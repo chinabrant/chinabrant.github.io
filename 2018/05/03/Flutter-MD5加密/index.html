@@ -94,14 +94,17 @@
 
 
 
+<meta name="description" content="有网络请求的地方基本上就有md5dart有内置的md5加密包，先引入头文件：123import &apos;dart:convert&apos;;import &apos;package:convert/convert.dart&apos;;import &apos;package:crypto/crypto.dart&apos;; md5加密方法1234567// md5 加密String generateMd5(String data) &amp;#123;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Flutter ScrollView上拉加载更多">
-<meta property="og:url" content="http://yoursite.com/2018/07/25/Flutter-ScrollView上拉加载更多/index.html">
+<meta property="og:title" content="Flutter MD5加密">
+<meta property="og:url" content="http://yoursite.com/2018/05/03/Flutter-MD5加密/index.html">
 <meta property="og:site_name" content="Brant">
+<meta property="og:description" content="有网络请求的地方基本上就有md5dart有内置的md5加密包，先引入头文件：123import &apos;dart:convert&apos;;import &apos;package:convert/convert.dart&apos;;import &apos;package:crypto/crypto.dart&apos;; md5加密方法1234567// md5 加密String generateMd5(String data) &amp;#123;">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-25T04:15:24.672Z">
+<meta property="og:updated_time" content="2018-07-25T04:26:25.920Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Flutter ScrollView上拉加载更多">
+<meta name="twitter:title" content="Flutter MD5加密">
+<meta name="twitter:description" content="有网络请求的地方基本上就有md5dart有内置的md5加密包，先引入头文件：123import &apos;dart:convert&apos;;import &apos;package:convert/convert.dart&apos;;import &apos;package:crypto/crypto.dart&apos;; md5加密方法1234567// md5 加密String generateMd5(String data) &amp;#123;">
 
 
 
@@ -130,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/07/25/Flutter-ScrollView上拉加载更多/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/05/03/Flutter-MD5加密/"/>
 
 
 
 
 
-  <title>Flutter ScrollView上拉加载更多 | Brant</title>
+  <title>Flutter MD5加密 | Brant</title>
   
 
 
@@ -259,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/25/Flutter-ScrollView上拉加载更多/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/03/Flutter-MD5加密/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Brant">
@@ -276,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Flutter ScrollView上拉加载更多</h1>
+          <h1 class="post-title" itemprop="name headline">Flutter MD5加密</h1>
         
 
         <div class="post-meta">
@@ -288,8 +291,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-25T12:15:24+08:00">
-                2018-07-25
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-03T12:16:59+08:00">
+                2018-05-03
               </time>
             
 
@@ -326,7 +329,10 @@
       
 
       
-        
+        <h1 id="有网络请求的地方基本上就有md5"><a href="#有网络请求的地方基本上就有md5" class="headerlink" title="有网络请求的地方基本上就有md5"></a>有网络请求的地方基本上就有md5</h1><p>dart有内置的md5加密包，先引入头文件：<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'dart:convert'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:convert/convert.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:crypto/crypto.dart'</span>;</span><br></pre></td></tr></table></figure></p>
+<p>md5加密方法<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// md5 加密</span></span><br><span class="line"><span class="built_in">String</span> generateMd5(<span class="built_in">String</span> data) &#123;</span><br><span class="line">  <span class="keyword">var</span> content = <span class="keyword">new</span> Utf8Encoder().convert(data);</span><br><span class="line">  <span class="keyword">var</span> digest = md5.convert(content);</span><br><span class="line">  <span class="comment">// 这里其实就是 digest.toString()</span></span><br><span class="line">  <span class="keyword">return</span> hex.encode(digest.bytes);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="关于学习"><a href="#关于学习" class="headerlink" title="关于学习"></a>关于学习</h1><p>flutter的学习文章及代码都整理在这个<a href="https://github.com/chinabrant/flutter_study" target="_blank" rel="noopener">github仓库</a>里</p>
+
       
     </div>
     
@@ -350,8 +356,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/25/iOS-Responder-Chain做事件传递/" rel="next" title="iOS Responder Chain做事件传递">
-                <i class="fa fa-chevron-left"></i> iOS Responder Chain做事件传递
+              <a href="/2018/05/02/Flutter-使用主题/" rel="next" title="Flutter 使用主题">
+                <i class="fa fa-chevron-left"></i> Flutter 使用主题
               </a>
             
           </div>
@@ -360,8 +366,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/07/25/Flutter-MD5加密/" rel="prev" title="Flutter MD5加密">
-                Flutter MD5加密 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/05/24/Flutter-Dart-静态变量值为null的bug/" rel="prev" title="Flutter Dart 静态变量值为null的bug">
+                Flutter Dart 静态变量值为null的bug <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -414,8 +420,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -468,6 +483,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#有网络请求的地方基本上就有md5"><span class="nav-number">1.</span> <span class="nav-text">有网络请求的地方基本上就有md5</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于学习"><span class="nav-number">2.</span> <span class="nav-text">关于学习</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

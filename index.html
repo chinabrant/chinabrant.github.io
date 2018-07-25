@@ -260,7 +260,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/25/Flutter-Dart-静态变量值为null的bug/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/24/Flutter-Dart-静态变量值为null的bug/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Brant">
@@ -279,7 +279,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/25/Flutter-Dart-静态变量值为null的bug/" itemprop="url">Flutter Dart 静态变量值为null的bug</a></h1>
+                <a class="post-title-link" href="/2018/05/24/Flutter-Dart-静态变量值为null的bug/" itemprop="url">Flutter Dart 静态变量值为null的bug</a></h1>
         
 
         <div class="post-meta">
@@ -291,8 +291,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-25T12:18:02+08:00">
-                2018-07-25
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-24T12:18:02+08:00">
+                2018-05-24
               </time>
             
 
@@ -331,7 +331,21 @@
       
         
           
-            
+            <p>Flutter还在学习中，我是以开发一个小的App来学习的，昨天做到一个需求是用户登录后用一个static的变量来缓存登录用户的信息。变量的赋值什么的都没有问题，可是当我在另一个页面想使用这个static的变量的时候，发现它神奇的变成了null。</p>
+<p>这个坑爹的问题让我改了很多代码，然而并没有什么卵用，最后不知道是什么促使我google了一下这个关键字“flutter static object value lost”，还真是dart的坑。</p>
+<p>可以看一下这个issuse：<a href="https://github.com/dart-lang/sdk/issues/32601" target="_blank" rel="noopener">https://github.com/dart-lang/sdk/issues/32601</a></p>
+<h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><p>dart导入文件的时候可以用相对路径，也中以用package路径，像下面这样:</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'static_value.dart'</span> <span class="keyword">as</span> staticA;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter_study/static_value/static_value.dart'</span> <span class="keyword">as</span> staticB;</span><br></pre></td></tr></table></figure>
+<p><strong>坑爹的地方就在这里，当你用上面两种方式导入同一个dart文件的时候，其实你得到的是使用同一份源代码的两个不同的library</strong>。</p>
+<h1 id="测试一下"><a href="#测试一下" class="headerlink" title="测试一下"></a>测试一下</h1><p>新建一个static_value.dart文件，代码如下:</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StaticValue</span> </span>&#123;</span><br><span class="line">  <span class="keyword">static</span> <span class="built_in">int</span> testStaticInt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在另一个页面里面用不同的方式导入这个文件，再修改这个testStaticInt变量的值，查看输出结果：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/material.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'static_value.dart'</span> <span class="keyword">as</span> staticA;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter_study/static_value/static_value.dart'</span> <span class="keyword">as</span> staticB;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StaticValuePage</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  State&lt;StatefulWidget&gt; createState() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> StaticValuePageState();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StaticValuePageState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">StaticValuePage</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="keyword">void</span> initState() &#123;</span><br><span class="line">    <span class="keyword">super</span>.initState();</span><br><span class="line"></span><br><span class="line">    staticA.StaticValue.testStaticInt = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">'staticA: <span class="subst">$&#123;staticA.StaticValue.testStaticInt&#125;</span>    staticB:<span class="subst">$&#123;staticB.StaticValue.testStaticInt&#125;</span>'</span>);</span><br><span class="line"></span><br><span class="line">    staticB.StaticValue.testStaticInt = <span class="number">2</span>;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">'staticA: <span class="subst">$&#123;staticA.StaticValue.testStaticInt&#125;</span>    staticB:<span class="subst">$&#123;staticB.StaticValue.testStaticInt&#125;</span>'</span>);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Scaffold(</span><br><span class="line">        appBar: <span class="keyword">new</span> AppBar(</span><br><span class="line">          title: <span class="keyword">new</span> Text(<span class="string">'静态变量'</span>),</span><br><span class="line">        ),</span><br><span class="line">        body: Center(</span><br><span class="line">          child: Text(<span class="string">''</span>),</span><br><span class="line">        ));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果如下，真的是惊喜意外到想哭。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">flutter: staticA: 1    staticB:null</span><br><span class="line">flutter: staticA: 1    staticB:2</span><br></pre></td></tr></table></figure>
+<p>#解决<br>这个文件就以一种方式引入</p>
+<h1 id="关于Flutter学习"><a href="#关于Flutter学习" class="headerlink" title="关于Flutter学习"></a>关于Flutter学习</h1><p>flutter的学习文章及代码都整理在这个<a href="https://github.com/chinabrant/flutter_study" target="_blank" rel="noopener">github仓库</a>里</p>
+
           
         
       
@@ -379,7 +393,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/25/Flutter-MD5加密/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/03/Flutter-MD5加密/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Brant">
@@ -398,7 +412,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/25/Flutter-MD5加密/" itemprop="url">Flutter MD5加密</a></h1>
+                <a class="post-title-link" href="/2018/05/03/Flutter-MD5加密/" itemprop="url">Flutter MD5加密</a></h1>
         
 
         <div class="post-meta">
@@ -410,8 +424,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-25T12:16:59+08:00">
-                2018-07-25
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-03T12:16:59+08:00">
+                2018-05-03
               </time>
             
 
@@ -450,245 +464,10 @@
       
         
           
-            
-          
-        
-      
-    </div>
-    
-    
-    
+            <h1 id="有网络请求的地方基本上就有md5"><a href="#有网络请求的地方基本上就有md5" class="headerlink" title="有网络请求的地方基本上就有md5"></a>有网络请求的地方基本上就有md5</h1><p>dart有内置的md5加密包，先引入头文件：<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'dart:convert'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:convert/convert.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:crypto/crypto.dart'</span>;</span><br></pre></td></tr></table></figure></p>
+<p>md5加密方法<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// md5 加密</span></span><br><span class="line"><span class="built_in">String</span> generateMd5(<span class="built_in">String</span> data) &#123;</span><br><span class="line">  <span class="keyword">var</span> content = <span class="keyword">new</span> Utf8Encoder().convert(data);</span><br><span class="line">  <span class="keyword">var</span> digest = md5.convert(content);</span><br><span class="line">  <span class="comment">// 这里其实就是 digest.toString()</span></span><br><span class="line">  <span class="keyword">return</span> hex.encode(digest.bytes);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="关于学习"><a href="#关于学习" class="headerlink" title="关于学习"></a>关于学习</h1><p>flutter的学习文章及代码都整理在这个<a href="https://github.com/chinabrant/flutter_study" target="_blank" rel="noopener">github仓库</a>里</p>
 
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/25/Flutter-ScrollView上拉加载更多/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brant">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brant">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/25/Flutter-ScrollView上拉加载更多/" itemprop="url">Flutter ScrollView上拉加载更多</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-25T12:15:24+08:00">
-                2018-07-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/25/iOS-Responder-Chain做事件传递/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brant">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brant">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/25/iOS-Responder-Chain做事件传递/" itemprop="url">iOS Responder Chain做事件传递</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-25T12:08:32+08:00">
-                2018-07-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
           
         
       
@@ -815,6 +594,133 @@
 <h1 id="使用主题"><a href="#使用主题" class="headerlink" title="使用主题"></a>使用主题</h1><p>创建好主题后，要如何使用呢，在Widget的构造方法里面通过<code>Theme.of(context)</code>方法来调用。</p>
 <p><code>Theme.of(context)</code> 会查找Widget 树，并返回最近的一个Theme对象。如果父层级上有<code>Theme</code>对象，则返回这个<code>Theme</code>,如果没有，就返回App的<code>Theme</code>。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Container(</span><br><span class="line">    color: Theme.of(context).accentColor,</span><br><span class="line">    chile: <span class="keyword">new</span> Text(</span><br><span class="line">        <span class="string">'Text with a background color'</span>,</span><br><span class="line">        style: Theme.of(context).textTheme.title,</span><br><span class="line">    ),</span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
 <h1 id="完整例子代码"><a href="#完整例子代码" class="headerlink" title="完整例子代码"></a>完整例子代码</h1><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/foundation.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/material.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() &#123;</span><br><span class="line">  runApp(<span class="keyword">new</span> MyApp());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">final</span> appName = <span class="string">'Custom Themes'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> MaterialApp(</span><br><span class="line">      title: appName,</span><br><span class="line">      theme: <span class="keyword">new</span> ThemeData(</span><br><span class="line">        brightness: Brightness.dark,</span><br><span class="line">        primaryColor: Colors.lightBlue[<span class="number">800</span>],</span><br><span class="line">        accentColor: Colors.cyan[<span class="number">600</span>],</span><br><span class="line">      ),</span><br><span class="line">      home: <span class="keyword">new</span> MyHomePage(</span><br><span class="line">        title: appName,</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyHomePage</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">String</span> title;</span><br><span class="line"></span><br><span class="line">  MyHomePage(&#123;Key key, <span class="meta">@required</span> <span class="keyword">this</span>.title&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Scaffold(</span><br><span class="line">      appBar: <span class="keyword">new</span> AppBar(</span><br><span class="line">        title: <span class="keyword">new</span> Text(title),</span><br><span class="line">      ),</span><br><span class="line">      body: <span class="keyword">new</span> Center(</span><br><span class="line">        child: <span class="keyword">new</span> Container(</span><br><span class="line">          color: Theme.of(context).accentColor,</span><br><span class="line">          child: <span class="keyword">new</span> Text(</span><br><span class="line">            <span class="string">'Text with a background color'</span>,</span><br><span class="line">            style: Theme.of(context).textTheme.title,</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">      floatingActionButton: <span class="keyword">new</span> Theme(</span><br><span class="line">        data: Theme.of(context).copyWith(accentColor: Colors.yellow),</span><br><span class="line">        child: <span class="keyword">new</span> FloatingActionButton(</span><br><span class="line">          onPressed: <span class="keyword">null</span>,</span><br><span class="line">          child: <span class="keyword">new</span> Icon(Icons.add),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="关于学习"><a href="#关于学习" class="headerlink" title="关于学习"></a>关于学习</h1><p>flutter的学习文章都整理在这个<a href="https://github.com/chinabrant/flutter_study" target="_blank" rel="noopener">github仓库</a>里</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/25/Flutter-ScrollView上拉加载更多/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brant">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brant">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/25/Flutter-ScrollView上拉加载更多/" itemprop="url">Flutter ScrollView上拉加载更多</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-25T12:15:24+08:00">
+                2018-04-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>2018.05.07 更新<br>上拉加载可以不用Notification,直接用ScrollController,代码如下:<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">_scrollController.addListener(() &#123;</span><br><span class="line">      <span class="keyword">if</span> (_scrollController.position.pixels ==</span><br><span class="line">              _scrollController.position.maxScrollExtent &amp;&amp;</span><br><span class="line">          !<span class="keyword">this</span>.isRefreshing &amp;&amp;</span><br><span class="line">          !<span class="keyword">this</span>.isNoMoreData) &#123;</span><br><span class="line">        <span class="comment">// 滑动到最底部了</span></span><br><span class="line">        _getData();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure></p>
+<p>以下是原文：</p>
+<p>前面讲了 <a href="https://www.jianshu.com/p/46bb225c2875" target="_blank" rel="noopener">下拉刷新</a>，列表离不开的还有一个上拉加载更多,今天就来讲一下上拉加载更多在flutter里面如何实现。</p>
+<p>在Flutter的github issuses里面，也有人提到了这个问题，但是官网上并没有一个很好的教程指引。</p>
+<p>思路是得到滑动的偏移量，跟ListView总的高度进行比对。那么得得到滑动的偏移量和ListView的总高度这两个值，在源码里面找了很久后，发现根本得不到ListView的内容高度。只能自己计算。但是发现了另一个数据。ScrollController里面有一个mostRecentlyUpdatePosition,这个对象的maxScrollExtent是可以滑动的最大距离，当滑动到底部的时候，maxScrollExtent跟ScrollController的offset是相等的。可以用这个比较来判断是否滑动到底部。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">body: <span class="keyword">new</span> NotificationListener(</span><br><span class="line">        onNotification: _onNotification,</span><br><span class="line">        child: <span class="keyword">new</span> RefreshIndicator(</span><br><span class="line">          key: _refreshIndicatorKey,</span><br><span class="line">          onRefresh: _refreshData,</span><br><span class="line">          child: <span class="keyword">new</span> ListView.builder(</span><br><span class="line">            controller: _scrollController,</span><br><span class="line">            physics: <span class="keyword">const</span> AlwaysScrollableScrollPhysics(),</span><br><span class="line">            itemCount: <span class="keyword">this</span>.list.length + <span class="number">1</span>,</span><br><span class="line">            itemBuilder: (_, <span class="built_in">int</span> index) =&gt; _createItem(context, index),</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br></pre></td></tr></table></figure>
+<p>主要的判断代码就是在这个ScrollNotification的回调方法里面了，看一下下面的代码应该就明白了。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">bool</span> _onNotification(ScrollNotification notification) &#123;</span><br><span class="line">    <span class="keyword">if</span> (notification <span class="keyword">is</span> ScrollUpdateNotification) &#123;</span><br><span class="line">      <span class="comment">// 当没去到底部的时候，maxScrollExtent和offset会相等，可以准确的判断到达底部还有多少距离时开始加载数据了。。</span></span><br><span class="line">      <span class="keyword">if</span> (_scrollController.mostRecentlyUpdatedPosition.maxScrollExtent &gt;</span><br><span class="line">              _scrollController.offset &amp;&amp;</span><br><span class="line">          _scrollController.mostRecentlyUpdatedPosition.maxScrollExtent -</span><br><span class="line">                  _scrollController.offset &lt;=</span><br><span class="line">              <span class="number">50</span>) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 要加载更多</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.isMore &amp;&amp; <span class="keyword">this</span>.loadMoreStatus != LoadMoreStatus.loading) &#123;</span><br><span class="line">          <span class="comment">// 有下一页</span></span><br><span class="line">          <span class="built_in">print</span>(<span class="string">'load more'</span>);</span><br><span class="line">          <span class="keyword">this</span>.loadMoreStatus = LoadMoreStatus.loading;</span><br><span class="line">          _loadMoreData();</span><br><span class="line">          setState(() &#123;&#125;);</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;&#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
 <h1 id="关于学习"><a href="#关于学习" class="headerlink" title="关于学习"></a>关于学习</h1><p>flutter的学习文章都整理在这个<a href="https://github.com/chinabrant/flutter_study" target="_blank" rel="noopener">github仓库</a>里</p>
 
           
@@ -1201,6 +1107,143 @@
             </a>
           </div>
           <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/22/iOS-Responder-Chain做事件传递/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brant">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brant">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/22/iOS-Responder-Chain做事件传递/" itemprop="url">iOS Responder Chain做事件传递</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-22T12:08:32+08:00">
+                2017-12-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>看<a href="https://casatwy.com/responder_chain_communication.html" target="_blank" rel="noopener">Casa Taloyum的博客</a>看到一个很nice的事件传递方式。</p>
+<p>事件传递的几种方式：</p>
+<ul>
+<li>Target-Action</li>
+<li>Delegate</li>
+<li>Notification</li>
+<li>Block</li>
+</ul>
+<p>像商品详情这种有各种各样的cell，cell里面又有各种不同的按钮事件等。cell里面可能还有几层UI，如何将这种层级很多很复杂的UI页面的事件传递到Controller中进行处理。一般的做法是用Block一层一层往外传，要不就是用Delegate一层层往外传。层级多的时候是很麻烦的。</p>
+<h1 id="iOS事件传递简介"><a href="#iOS事件传递简介" class="headerlink" title="iOS事件传递简介"></a>iOS事件传递简介</h1><p>iOS系统的事件响应链是按UI层级传递的。如果我们自己的事件可以在系统的响应链中进行传递的话，那就可以跳出UI层级的困扰了。</p>
+<p>先说一下iOS系统的事件传递，它是通过UIResponder从上往下传递的，UIWindow, UIViewController, UIView等都是继承自UIResponder的，所以它们都可以响应事件，举个栗子：<br>window -&gt; UIViewController -&gt; view1 -&gt; view2 -&gt; view3 这个链条是一个包含关系，当他们都可以响应事件时，如果点击了view3，系统是window开始遍历，一直找到最外层的view3.如果view3不处理事件，就是传递到view2，一级一级往上传递。<br>一般来说我们一个页面上的view不管在哪个层级，它的层级链里面都是有UIViewController这一层的。所以我们可以把事件标识好，在UIViewController这个层级再处理。</p>
+<h1 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h1><p>给UIResponder添加一个分类<br>.h文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#import &lt;UIKit/UIKit.h&gt;</span><br><span class="line"></span><br><span class="line">@interface UIResponder (Router)</span><br><span class="line"></span><br><span class="line">- (void)routerEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userInfo;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure></p>
+<p>.m文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;UIResponder+Router.h&quot;</span><br><span class="line"></span><br><span class="line">@implementation UIResponder (Router)</span><br><span class="line"></span><br><span class="line">- (void)routerEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userInfo &#123;</span><br><span class="line">    </span><br><span class="line">    [[self nextResponder] routerEventWithName:eventName userInfo:userInfo];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure></p>
+<p>当点击一个按钮或者某个事件发生时，调用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[sender routerEventWithName:@&quot;事件标识，可以用枚举或者宏常量定义好的string&quot; userInfo:nil];</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (IBAction)firstButtonClicked:(UIButton *)button &#123;</span><br><span class="line">    [button routerEventWithName:@&quot;first&quot; userInfo:@&#123; @&quot;key&quot; : @&quot;来自第一个cell&quot; &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在要处理的view中重写routerEventWithName方法，处理掉事件，一般可能是UIViewController中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (void)routerEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userInfo &#123;</span><br><span class="line">    // 判断事件的类型，取出参数处理事件，也可以写一个专门的处理事件的类来处理</span><br><span class="line">    [self.eventProxy handleEvent:eventName userInfo:userInfo];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>配合我前面写的<a href="http://www.jianshu.com/p/b98e732ee9ad" target="_blank" rel="noopener">用协议解耦TableViewCell的方案</a>，可以完美的保持cell可重用性，同是，重构什么的对Controller的改动会很小。</p>
+<p><a href="https://github.com/chinabrant/ResponderChainDemo" target="_blank" rel="noopener">Github ResponderChainDemo</a>觉得不错就给个star。</p>
+
+          
         
       
     </div>
