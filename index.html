@@ -1371,7 +1371,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/18/RxSwift中的Subject（PublishSubject-BehaviorSubject-ReplaySubject-Variable）/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/24/TCP-IP协议/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Brant">
@@ -1390,7 +1390,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/18/RxSwift中的Subject（PublishSubject-BehaviorSubject-ReplaySubject-Variable）/" itemprop="url">RxSwift中的Subject（PublishSubject/BehaviorSubject/ReplaySubject/Variable）</a></h1>
+                <a class="post-title-link" href="/2017/10/24/TCP-IP协议/" itemprop="url">TCP/IP协议</a></h1>
         
 
         <div class="post-meta">
@@ -1402,8 +1402,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-18T16:45:38+08:00">
-                2017-10-18
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-24T12:22:55+08:00">
+                2017-10-24
               </time>
             
 
@@ -1441,14 +1441,49 @@
 
       
         
-          <p>RxSwift中有四种类型的Subject：<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/18/RxSwift中的Subject（PublishSubject-BehaviorSubject-ReplaySubject-Variable）/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <h2 id="TCP-IP协议的工作流程如下："><a href="#TCP-IP协议的工作流程如下：" class="headerlink" title="TCP/IP协议的工作流程如下："></a>TCP/IP协议的工作流程如下：</h2><ul>
+<li>在源主机上，应用层将一串应用数据流传送给传输层。</li>
+<li>传输层将应用层的数据流截成分组，并加上<code>TCP</code>报头形成<code>TCP</code>段，送交网络层。</li>
+<li>在网络层给<code>TCP</code>段加上包括源、目的主机IP地址的IP报头，生成一个<code>IP</code>数据包，并将IP数据包送交链路层。</li>
+<li>链路层在其<code>MAC</code>帧的数据部分装上IP数据包，再加上源、目的主机的<code>MAC</code>地址和帧头，并根据其目的<code>MAC</code>地址，将MAC帧发往目的主机或IP路由器。</li>
+<li>在目的主机，链路层将<code>MAC</code>帧的帧头去掉，并将IP数据包送交网络层。</li>
+<li>网络层检查<code>IP</code>报头，如果报头中校验和与计算结果不一致，则丢弃该IP数据包；若校验和与计算结果一致，则去掉IP报头，将<code>TCP</code>段送交传输层。</li>
+<li>传输层检查顺序号，判断是否是正确的TCP分组，然后检查<code>TCP</code>报头数据。若正确，则向源主机发确认信息；若不正确或丢包，则向源主机要求重发信息。</li>
+<li>在目的主机，传输层去<code>TCP</code>报头，将排好顺序的分组组成应用数据流送给应用程序。这样目的主机接收到的来自源主机的字节流，就像是直接接收来自源主机的字节流一样。</li>
+</ul>
+<h2 id="TCP-IP-协议的七层"><a href="#TCP-IP-协议的七层" class="headerlink" title="TCP/IP 协议的七层"></a>TCP/IP 协议的七层</h2><ul>
+<li><strong>应用层(Application layer) </strong></li>
+<li><strong>表示层(Presentation layer)</strong> </li>
+<li><strong>会话层(Session layer)</strong> </li>
+<li><strong>传输层(Transport layer)</strong></li>
+<li><strong>网络层(Network layer)</strong> </li>
+<li><strong>数据链路层(Data link layer)</strong> </li>
+<li><strong>物理层(Physical layer)</strong> </li>
+</ul>
+<h2 id="TCP和UDP的区别"><a href="#TCP和UDP的区别" class="headerlink" title="TCP和UDP的区别"></a>TCP和UDP的区别</h2><ul>
+<li>TCP提供的是面向连接的、可靠的数据流传输</li>
+<li>UDP提供的是非面向连接的、不可靠的数据流传输。</li>
+<li>简单的说，TCP注重数据安全，而UDP数据传输快点，但安全性一般.</li>
+</ul>
+<h2 id="建立连接协议（三次握手）"><a href="#建立连接协议（三次握手）" class="headerlink" title="建立连接协议（三次握手）"></a>建立连接协议（三次握手）</h2><ul>
+<li>客户端发送一个带SYN标志的TCP报文到服务器。这是三次握手过程中的报文1。</li>
+<li>服务器端回应客户端的，这是三次握手中的第2个报文，这个报文同时带ACK标志和SYN标志。因此它表示对刚才客户端SYN报文的回应；同时又标志SYN给客户端，询问客户端是否准备好进行数据通讯。</li>
+<li>客户必须再次回应服务段一个ACK报文，这是报文段3。</li>
+</ul>
+<h2 id="连接终止协议（四次挥手）"><a href="#连接终止协议（四次挥手）" class="headerlink" title="连接终止协议（四次挥手）"></a>连接终止协议（四次挥手）</h2><blockquote>
+<blockquote>
+<p>由于TCP连接是全双工的，因此每个方向都必须单独进行关闭。这原则是当一方完成它的数据发送任务后就能发送一个FIN来终止这个方向的连接。收到一个 FIN只意味着这一方向上没有数据流动，一个TCP连接在收到一个FIN后仍能发送数据。首先进行关闭的一方将执行主动关闭，而另一方执行被动关闭。</p>
+</blockquote>
+</blockquote>
+<ul>
+<li>TCP客户端发送一个FIN，用来关闭客户到服务器的数据传送（报文段4）。</li>
+<li>服务器收到这个FIN，它发回一个ACK，确认序号为收到的序号加1（报文段5）。和SYN一样，一个FIN将占用一个序号。</li>
+<li>服务器关闭客户端的连接，发送一个FIN给客户端（报文段6）。</li>
+<li>客户段发回ACK报文确认，并将确认序号设置为收到序号加1（报文段7）。</li>
+</ul>
+
+          
         
       
     </div>
@@ -1532,7 +1567,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
