@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="关于动画在移动开发中，为了提高用户体验，会用到一些动画来提高应用的视觉效果。让人有眼前一亮的感觉。同时有动画的过渡过程，会让应用看起来不是那么的生硬，更吸引用户。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS 动画">
+<meta property="og:url" content="http://yoursite.com/2017/06/27/iOS-动画/index.html">
+<meta property="og:site_name" content="Brant">
+<meta property="og:description" content="关于动画在移动开发中，为了提高用户体验，会用到一些动画来提高应用的视觉效果。让人有眼前一亮的感觉。同时有动画的过渡过程，会让应用看起来不是那么的生硬，更吸引用户。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/acbce940gy1fgqnguclefg20fo0oqe83.gif">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/acbce940gy1fgqgn7ugggj20lr0nxq71.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/acbce940gy1fgqdpebs9zj20yg0n4wha.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/acbce940gy1fgqngnvxl7g20fo0ksdss.gif">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/acbce940gy1fgqo76af3dg20fo0dcdlc.gif">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/acbce940gy1fgqohgz9dmg209006y0tg.gif">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/acbce940gy1fgu1rydlkrg20aa0j6dvq.gif">
+<meta property="og:updated_time" content="2018-07-25T03:35:14.731Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS 动画">
+<meta name="twitter:description" content="关于动画在移动开发中，为了提高用户体验，会用到一些动画来提高应用的视觉效果。让人有眼前一亮的感觉。同时有动画的过渡过程，会让应用看起来不是那么的生硬，更吸引用户。">
+<meta name="twitter:image" content="http://wx2.sinaimg.cn/mw690/acbce940gy1fgqnguclefg20fo0oqe83.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/06/27/iOS-动画/"/>
+
+
+
+
+
+  <title>iOS 动画 | Brant</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Brant</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">技术是需要总结的</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/27/iOS-动画/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brant">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brant">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">iOS 动画</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-27T09:37:05+08:00">
+                2017-06-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="关于动画"><a href="#关于动画" class="headerlink" title="关于动画"></a>关于动画</h1><p>在移动开发中，为了提高用户体验，会用到一些动画来提高应用的视觉效果。让人有眼前一亮的感觉。同时有动画的过渡过程，会让应用看起来不是那么的生硬，更吸引用户。<br><a id="more"></a></p>
+<h1 id="UIView动画"><a href="#UIView动画" class="headerlink" title="UIView动画"></a>UIView动画</h1><p>UIView动画比较简单，用起来也比较简单。所以它能实现的功能还是有限的，但是一般的开发中是够用的。UIView动画是封装自CoreAnimation的，下面会讲到。</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/acbce940gy1fgqnguclefg20fo0oqe83.gif" alt=""></p>
+<h2 id="基本动画"><a href="#基本动画" class="headerlink" title="基本动画"></a>基本动画</h2><ul>
+<li>常规用法begin commit代码段</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">// 第一个参数：动画的标识</span><br><span class="line">    // 第二个参数：附加参数，会发送给动画代理，一般设置为nil就可以了</span><br><span class="line">    [UIView beginAnimations:@&quot;test&quot; context:nil];</span><br><span class="line">    // 动画执行时间</span><br><span class="line">    [UIView setAnimationDuration:kAnimationDuration];</span><br><span class="line">    // 设置动画延迟执行时间，默认为0，一般不用设置</span><br><span class="line">    [UIView setAnimationDelay:0];</span><br><span class="line">    // 动画重复次数</span><br><span class="line">    [UIView setAnimationRepeatCount:1];</span><br><span class="line">    // 动画是否原路返回</span><br><span class="line">    [UIView setAnimationRepeatAutoreverses:NO];</span><br><span class="line">    </span><br><span class="line">    // 要先设置这个代理，后面设置代理方法才会有效果</span><br><span class="line">    [UIView setAnimationDelegate:self];</span><br><span class="line">    // 这里的方法也可以是其它的任何方法,如果是这个标准的代理方法，可以不用设置，只设置代理就会执行这个方法</span><br><span class="line">//    [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];</span><br><span class="line">    // 动画的时间曲线</span><br><span class="line">    /*UIViewAnimationCurve的枚举值如下：</span><br><span class="line">      UIViewAnimationCurveEaseInOut,//慢进慢出（默认值）</span><br><span class="line">      UIViewAnimationCurveEaseIn,//慢进</span><br><span class="line">      UIViewAnimationCurveEaseOut,//慢出</span><br><span class="line">      UIViewAnimationCurveLinear//匀速</span><br><span class="line">     */</span><br><span class="line">    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];</span><br><span class="line">    // 要执行的view的变化</span><br><span class="line">    self.aniView.backgroundColor = [UIColor purpleColor];</span><br><span class="line">    self.aniView.frame = CGRectMake(200, 80, 100, 100);</span><br><span class="line">    // 提交动画执行</span><br><span class="line">    [UIView commitAnimations];</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Block用法</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">// iOS4以后有了block形式的动画，可以更方便的组织代码</span><br><span class="line">    // 只设置动画时间，要执行的变化</span><br><span class="line">    [UIView animateWithDuration:kAnimationDuration animations:^&#123;</span><br><span class="line">        self.aniView.backgroundColor = [UIColor purpleColor];</span><br><span class="line">        self.aniView.frame = CGRectMake(200, 80, 100, 100);</span><br><span class="line">    &#125;];</span><br><span class="line">    </span><br><span class="line">    [UIView animateWithDuration:kAnimationDuration animations:^&#123;</span><br><span class="line">        </span><br><span class="line">    &#125; completion:^(BOOL finished) &#123;</span><br><span class="line">        // 动画执行完后的回调</span><br><span class="line">    &#125;];</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    // options 可以设置多个。</span><br><span class="line">    [UIView animateWithDuration:kAnimationDuration delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^&#123;</span><br><span class="line">        self.aniView.backgroundColor = [UIColor purpleColor];</span><br><span class="line">        self.aniView.frame = CGRectMake(200, 80, 100, 100);</span><br><span class="line">    &#125; completion:^(BOOL finished) &#123;</span><br><span class="line">        NSLog(@&quot;动画执行完了&quot;);</span><br><span class="line">    &#125;];</span><br></pre></td></tr></table></figure>
+<h2 id="Spring动画（带弹簧效果）"><a href="#Spring动画（带弹簧效果）" class="headerlink" title="Spring动画（带弹簧效果）"></a>Spring动画（带弹簧效果）</h2><p>iOS7 以后引入的Spring动画，iOS8的时候Apple开放的Spring动画的API，开发者可以借助这个API很简单的实现带有弹簧的动画效果了。</p>
+<p>用法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[UIView animateWithDuration:kAnimationDuration // 动画持续时间</span><br><span class="line">                          delay:0 // 动画延迟执行的时间</span><br><span class="line">         usingSpringWithDamping:0.2 // 震动效果，范围0~1，数值越小震动效果越明显</span><br><span class="line">          initialSpringVelocity:10 // 初始速度，数值越大初始速度越快</span><br><span class="line">                        options:UIViewAnimationOptionCurveEaseIn // 动画的过渡效果</span><br><span class="line">                     animations:^&#123;</span><br><span class="line">                         //执行的动画</span><br><span class="line">                         self.aniView.backgroundColor = [UIColor purpleColor];</span><br><span class="line">                         self.aniView.frame = CGRectMake(200, 80, 100, 100);</span><br><span class="line">                     &#125;</span><br><span class="line">                     completion:^(BOOL finished) &#123;</span><br><span class="line">                         // 动画执行完后的回调</span><br><span class="line">                     &#125;];</span><br></pre></td></tr></table></figure>
+<h1 id="Core-Animation动画"><a href="#Core-Animation动画" class="headerlink" title="Core Animation动画"></a>Core Animation动画</h1><p>Core Animation翻译过来就是核心动画，它是iOS平台和MAC OS平台动画的核心组件。上面的UIView动画就是封装自Core Animation。它有一组非常强大的API，可以实现各种各样炫酷的动画效果。在日常开发中，一般的动画效果都可以用UIView层封装好的动画实现，但是有一些动画还是得用Core Animation来实现，例如：一些复杂的直播动画效果、自定义一些圆形进度条、一些路径类的自定义view等。</p>
+<p>CAAnimation 的动画是作用在layer上，每个view在创建时，会默认创建一个用于显示的layer。所以要熟练运用Core Animation 必须对CALayer有一定的了解，下面这张图(网上盗的)是CALayer的一些属性。</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/acbce940gy1fgqgn7ugggj20lr0nxq71.jpg" alt=""></p>
+<h2 id="类结构"><a href="#类结构" class="headerlink" title="类结构"></a>类结构</h2><p>Core Animation中开发直接用到的动画类就两个<code>CABasicAnimation`</code>CAKeyFrameAnimation`,下面是Core Animation的类结构图：</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/acbce940gy1fgqdpebs9zj20yg0n4wha.jpg" alt=""></p>
+<p><strong>CAAnimation</strong> 的一些属性，子类会用到：</p>
+<ul>
+<li><strong>timingFunction</strong> 动画速度<ul>
+<li>kCAMediaTimingFunctionLinear  线性，匀速</li>
+<li>kCAMediaTimingFunctionEaseIn  渐进，逐渐进入，然后加速完成</li>
+<li>kCAMediaTimingFunctionEaseOut 渐出，动画全速进入，然后缓慢完成</li>
+<li>kCAMediaTimingFunctionEaseInEaseOut  渐进渐出</li>
+</ul>
+</li>
+<li><strong>removedOnCompletion</strong> 默认为YES，代表动画执行完毕后就从图层上移除，图形会恢复到动画执行前的状态。如果想让图层保持显示动画执行后的状态，那就设置为NO，不过还要设置fillMode</li>
+</ul>
+<p><strong>CAMediaTiming</strong>协议 相关属性：</p>
+<ul>
+<li><strong>beginTime</strong>   动画的开始时间（如果超过的duration，那么动画不会开始）</li>
+<li><strong>duration</strong>    动画的持续时间</li>
+<li><strong>speed</strong>       动画的速度</li>
+<li><strong>repeatCount</strong> 重复次数，默认为0，无限重复可以设置为HUGE_VALF或者MAXFLOAT</li>
+<li><strong>repeatDuration</strong> 动画重复时间，默认为0</li>
+<li><strong>fillMode</strong>     决定当前对象在非active时间段的行为。（要想fillMode有效，最好设置removedOnCompletion = NO）</li>
+<li>fillMode类型：<ul>
+<li>kCAFillModeRemoved     这个是默认值，也就是说当动画开始前和动画结束后，动画对layer都没有影响，动画结束后，layer会恢复到之前的状态</li>
+<li>kCAFillModeForwards    当动画结束后，layer会一直保持着动画最后的状态</li>
+<li>kCAFillModeBackwards   在动画开始前，只需要将动画加入了一个layer，layer便立即进入动画的初始状态并等待动画开始。</li>
+<li>kCAFillModeBoth        这个其实就是上面两个的合成,动画加入后开始之前，layer便处于动画初始状态，动画结束后layer保持动画最后的状态</li>
+</ul>
+</li>
+</ul>
+<p><strong>CAPropertyAnimation</strong> 这是一个抽象类，不能直接使用，要实现动画，一般用它的两个子类，相关属性：</p>
+<ul>
+<li><strong>keyPath</strong>    指定接收层动画的关键路径（入门篇提供了部分keyPath，敬请参考）</li>
+<li><strong>cumulative</strong>    下一次动画执行是否接着刚才的动画，默认为false</li>
+<li><strong>additive</strong>    如何处理多个动画在同一时间段执行的结果，若为true，同一时间段的动画合成为一个动画，默认为false。（使用 * CAKeyframeAnimation 时必须将该属性指定为 true ，否则不会出现期待的结果）</li>
+</ul>
+<h2 id="CABasicAnimation-基础动画"><a href="#CABasicAnimation-基础动画" class="headerlink" title="CABasicAnimation(基础动画)"></a>CABasicAnimation(基础动画)</h2><p><img src="http://wx1.sinaimg.cn/mw690/acbce940gy1fgqngnvxl7g20fo0ksdss.gif" alt=""></p>
+<p><img src="http://wx3.sinaimg.cn/mw690/acbce940gy1fgqo76af3dg20fo0dcdlc.gif" alt=""></p>
+<p>相关属性：</p>
+<ul>
+<li><strong>fromValue</strong>   开始的值</li>
+<li><strong>toValue</strong>     结束时的值</li>
+<li><strong>byValue</strong>     动画过程中的值</li>
+</ul>
+<p>关于这三个属性的设置有如下几种结果：</p>
+<ul>
+<li>设置fromValue和toValue，keyPath属性值在fromValue与toValue之间渐变</li>
+<li>设置fromValue和byValue，keyPath属性值在fromValue与(fromValue+byValue)之间渐变</li>
+<li>设置byValue和toValue，keyPath属性值在(toValue-byValue)与toValue之间渐变</li>
+<li>只设置fromValue，keyPath属性值在fromValue与图层对应当前值之间渐变</li>
+<li>只设置toValue，keyPath属性值在图层对应当前值与toValue之间渐变</li>
+<li>只设置byValue，keyPath属性值在图层对应当前值与(图层对应当前值+toValue)之间渐变</li>
+</ul>
+<blockquote>
+<p>NOTICE: 为了防止冲突，在指定了toValue时不需要byValue、而指定了byValue也不需要指定toValue。<br>value的值可以设置为CATransform3D的对象，实现3D动画效果！</p>
+</blockquote>
+<h2 id="CAKeyFrameAnimation"><a href="#CAKeyFrameAnimation" class="headerlink" title="CAKeyFrameAnimation"></a>CAKeyFrameAnimation</h2><p>示例：</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/acbce940gy1fgqohgz9dmg209006y0tg.gif" alt=""></p>
+<p>相关属性：</p>
+<ul>
+<li><strong>values</strong>  存放“关键帧”，动画会一次到达关键帧指定的值，并自动生成中间动画。</li>
+<li><strong>path</strong>    路径，可以设置一个CGPathRef的路径，让图层按照路径移动，因此只对anchorPosition和position起作用，当设置了path会忽略掉values中的值。</li>
+<li><strong>keyTimes</strong> 指定到达每个关键帧的时间，与values对应，不设置就是平分。</li>
+<li><strong>timingFunctions</strong>  指定到达每一帧的速度，度values对应，可以不设置。</li>
+</ul>
+<h2 id="CATransition"><a href="#CATransition" class="headerlink" title="CATransition"></a>CATransition</h2><p><img src="http://wx4.sinaimg.cn/mw690/acbce940gy1fgu1rydlkrg20aa0j6dvq.gif" alt=""></p>
+<p>属性：</p>
+<ul>
+<li><strong>type</strong>        动画的类型</li>
+<li><strong>subtype</strong>     动画过度方向（可自行查看相关字符串）</li>
+</ul>
+<p>type的类型：</p>
+<ul>
+<li><p>基本效果</p>
+<ul>
+<li>kCATransitionFade        渐入渐出效果</li>
+<li>kCATransitionMoveIn      移入效果</li>
+<li>kCATransitionPush        推入效果</li>
+<li>kCATransitionReveal      截开效果</li>
+</ul>
+</li>
+<li><p>私有API(可安全使用):</p>
+<ul>
+<li>cube                   方块</li>
+<li>suckEffect             三角</li>
+<li>rippleEffect           水波</li>
+<li>pageCurl               上翻页</li>
+<li>pageUnCurl             下翻页</li>
+<li>oglFlip                上下翻转</li>
+<li>cameralrisHollowOpen      镜头快门开</li>
+<li>cameralrisHollowClose     镜头快门关</li>
+</ul>
+</li>
+</ul>
+<h2 id="CAAnimationGroup"><a href="#CAAnimationGroup" class="headerlink" title="CAAnimationGroup"></a>CAAnimationGroup</h2><ul>
+<li><strong>animations</strong><br>数组，里面存放动画（动画可以是，基本动画、关键帧动画等其他动画）里面存放的动画可以不设置时间和重复次数，统一在CAAnimationGrop对象中设置。数组中动画的duration可以单独设置，还可以设置数组中动画的开始时间，来控制动画单个动画在组动画中的执行时间，但是时间不能超过组动画的时间，如果超过，该动画不会执行。</li>
+</ul>
+<p>可以在github上找到以上动画示例<a href="https://github.com/chinabrant/CoreAnimationDemo" target="_blank" rel="noopener">Demo</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/02/代码评审/" rel="next" title="代码评审">
+                <i class="fa fa-chevron-left"></i> 代码评审
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/03/启动页优化，runloop的一个小技术点/" rel="prev" title="启动页优化，runloop的一个小技术点">
+                启动页优化，runloop的一个小技术点 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Brant" />
+          <p class="site-author-name" itemprop="name">Brant</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#关于动画"><span class="nav-number">1.</span> <span class="nav-text">关于动画</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UIView动画"><span class="nav-number">2.</span> <span class="nav-text">UIView动画</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本动画"><span class="nav-number">2.1.</span> <span class="nav-text">基本动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring动画（带弹簧效果）"><span class="nav-number">2.2.</span> <span class="nav-text">Spring动画（带弹簧效果）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Core-Animation动画"><span class="nav-number">3.</span> <span class="nav-text">Core Animation动画</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#类结构"><span class="nav-number">3.1.</span> <span class="nav-text">类结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CABasicAnimation-基础动画"><span class="nav-number">3.2.</span> <span class="nav-text">CABasicAnimation(基础动画)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CAKeyFrameAnimation"><span class="nav-number">3.3.</span> <span class="nav-text">CAKeyFrameAnimation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CATransition"><span class="nav-number">3.4.</span> <span class="nav-text">CATransition</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CAAnimationGroup"><span class="nav-number">3.5.</span> <span class="nav-text">CAAnimationGroup</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Brant</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

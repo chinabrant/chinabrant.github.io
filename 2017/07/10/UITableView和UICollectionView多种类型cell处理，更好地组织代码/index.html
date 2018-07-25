@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="问题点介绍开发不仅仅是完成功能，还要写出认后来人可以很容易上手维护的代码。今天就记录一下列表数据，多种类型cell时，如何更好的组织代码。从实际需求场景出发，先看一下UI效果图。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UITableView和UICollectionView多种类型cell处理，更好地组织代码">
+<meta property="og:url" content="http://yoursite.com/2017/07/10/UITableView和UICollectionView多种类型cell处理，更好地组织代码/index.html">
+<meta property="og:site_name" content="Brant">
+<meta property="og:description" content="问题点介绍开发不仅仅是完成功能，还要写出认后来人可以很容易上手维护的代码。今天就记录一下列表数据，多种类型cell时，如何更好的组织代码。从实际需求场景出发，先看一下UI效果图。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/acbce940gy1fhbd2o1zvpj20ak0p214t.jpg">
+<meta property="og:updated_time" content="2018-07-25T03:34:48.858Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UITableView和UICollectionView多种类型cell处理，更好地组织代码">
+<meta name="twitter:description" content="问题点介绍开发不仅仅是完成功能，还要写出认后来人可以很容易上手维护的代码。今天就记录一下列表数据，多种类型cell时，如何更好的组织代码。从实际需求场景出发，先看一下UI效果图。">
+<meta name="twitter:image" content="http://wx1.sinaimg.cn/mw690/acbce940gy1fhbd2o1zvpj20ak0p214t.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/10/UITableView和UICollectionView多种类型cell处理，更好地组织代码/"/>
+
+
+
+
+
+  <title>UITableView和UICollectionView多种类型cell处理，更好地组织代码 | Brant</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Brant</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">技术是需要总结的</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/10/UITableView和UICollectionView多种类型cell处理，更好地组织代码/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brant">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brant">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">UITableView和UICollectionView多种类型cell处理，更好地组织代码</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-10T14:51:07+08:00">
+                2017-07-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="问题点介绍"><a href="#问题点介绍" class="headerlink" title="问题点介绍"></a>问题点介绍</h1><p>开发不仅仅是完成功能，还要写出认后来人可以很容易上手维护的代码。今天就记录一下列表数据，多种类型cell时，如何更好的组织代码。从实际需求场景出发，先看一下UI效果图。<br><a id="more"></a><br><img src="http://wx1.sinaimg.cn/mw690/acbce940gy1fhbd2o1zvpj20ak0p214t.jpg" alt=""></p>
+<p>刚开始做开发的人，碰到table view什么的，很容易写出下面这样的代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">if (indexPath.section == 0) &#123;</span><br><span class="line">  if (indexPath.row == 0) &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">  else if (indexPath.row == 1) &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">else if (indexPath.section == 2) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>各种各样的魔法数字。刚写的那会还好，还知道是什么意思，能很快的找到要修改的地方。过了一两个月，再有需求修改的话，写的人自己都要读好久的代码，还容易出错。如果让别人接手，那就有点痛苦了。</p>
+<p>举个栗子：我看过一个商品详情页面的代码，一个cellForRow方法里面有650行代码。cellForRow方法里面做了各种各样的事情，最主要的是清一色的上面这样的if else。</p>
+<h1 id="先从大的方面列几点建议："><a href="#先从大的方面列几点建议：" class="headerlink" title="先从大的方面列几点建议："></a>先从大的方面列几点建议：</h1><ol>
+<li>目前一直用MVVM的模式开发，所以数据请求，加工处理应该放在ViewModel里面。</li>
+<li>cellForRow方法，应该只是做为Data跟View的一个接口处，不应该放各种设置代码，处理代码。相应的代码应该放到cell里面去处理。</li>
+<li>不要用0，1这样的魔法数字。今天主要讲这点。</li>
+</ol>
+<h1 id="用魔法数字的缺点"><a href="#用魔法数字的缺点" class="headerlink" title="用魔法数字的缺点"></a>用魔法数字的缺点</h1><ul>
+<li>无意义，0、1这样的数字只能表示位置。没有其它的信息。</li>
+<li>容易出错，在cell代理方法，高度代理方法，点击代理方法里面要保持一致，容易出错。</li>
+<li>不方便修改，如果要修改两个cell的顺序，要修改好几个地方。</li>
+</ul>
+<p>下面说一下解决方法，并不是什么高深的东西，有一定开发经验的人应该都懂。对于一个tableview，位置数字肯定是有的，我们要消除数字，那就得找到相应的数据来代替它。这里，主要的场景一般都是一个row对应一种类型的cell，所以类型是固定的，所以我们用一个枚举来定义所有类型的cell。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">typedef NS_ENUM(NSInteger, HomeCellType) &#123;</span><br><span class="line">    HomeCellTypeTopFunction = 0,</span><br><span class="line">    HomeCellTypeToutiao,</span><br><span class="line">    HomeCellTypeToday,</span><br><span class="line">    HomeCellTypeSeckill,</span><br><span class="line">    HomeCellTypeActivity,    </span><br><span class="line">    HomeCellTypeSpecialTopic,    </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>上面是我从项目里直接复制出来的，请忽略名字（取名真是一个痛苦的事【抱头】）。列表的数据一般都是放在一个Array里面，还是以我上面的例子来说明，我有6种类型的model，有些model可能有多个，像上面枚举里面最后那个类型的model就可能有多个。从服务器拉回数据后，我就在vm里面解析好，全放到一个array里面了，就是列表的数据源。下面是我的cellForRow方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">id model = self.viewModel.dataArray[indexPath.row];</span><br><span class="line">        switch ([self getHomeCellType:model]) &#123;</span><br><span class="line">            case HomeCellTypeTopFunction: &#123;</span><br><span class="line">                TopFunctionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[TopFunctionCell cellIdentifier] forIndexPath:indexPath];</span><br><span class="line"></span><br><span class="line">                cell.viewModel = model;</span><br><span class="line"></span><br><span class="line">                return cell;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            case HomeCellTypeToutiao: &#123;</span><br><span class="line">                IndexToutiaoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[IndexToutiaoCell cellIdentifier] forIndexPath:indexPath];</span><br><span class="line"></span><br><span class="line">                cell.viewModel = model;</span><br><span class="line"></span><br><span class="line">                return cell;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            case HomeCellTypeToday: &#123;</span><br><span class="line">                IndexTodayCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[IndexTodayCell cellIdentifier] forIndexPath:indexPath];</span><br><span class="line"></span><br><span class="line">                cell.viewModel = model;</span><br><span class="line"></span><br><span class="line">                return cell;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            case HomeCellTypeActivity: &#123;</span><br><span class="line">                IndexActivityCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[IndexActivityCell cellIdentifier] forIndexPath:indexPath];</span><br><span class="line"></span><br><span class="line">                cell.viewModel = model;</span><br><span class="line"></span><br><span class="line">                return cell;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            case HomeCellTypeSeckill: &#123;</span><br><span class="line">                SeckillCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[SeckillCell cellIdentifier] forIndexPath:indexPath];</span><br><span class="line"></span><br><span class="line">                cell.viewModel = model;</span><br><span class="line"></span><br><span class="line">                return cell;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            case HomeCellTypeSpecialTopic: &#123;</span><br><span class="line">                IndexSpecialTopicCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[IndexSpecialTopicCell cellIdentifier] forIndexPath:indexPath];</span><br><span class="line"></span><br><span class="line">                cell.viewModel = model;</span><br><span class="line"></span><br><span class="line">                return cell;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            default:</span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样的cellForRow方法是不是很简洁。里面的getHomeCellType方法是通过dataArray里面model的类型，拿到对应的cell类型。方法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">- (HomeCellType)getHomeCellType:(id)model &#123;</span><br><span class="line">    HomeCellType type = HomeCellTypeTopFunction;</span><br><span class="line">    if ([model isKindOfClass:[IndexToutiaoCellViewModel class]]) &#123;</span><br><span class="line">        type = HomeCellTypeToutiao;</span><br><span class="line">    &#125;</span><br><span class="line">    else if ([model isKindOfClass:[SeckillCellViewModel class]]) &#123;</span><br><span class="line">        type = HomeCellTypeSeckill;</span><br><span class="line">    &#125;</span><br><span class="line">    else if ([model isKindOfClass:[IndexTodayCellViewModel class]]) &#123;</span><br><span class="line">        type = HomeCellTypeToday;</span><br><span class="line">    &#125;</span><br><span class="line">    else if ([model isKindOfClass:[IndexActivityCellViewModel class]]) &#123;</span><br><span class="line">        type = HomeCellTypeActivity;</span><br><span class="line">    &#125;</span><br><span class="line">    else if ([model isKindOfClass:[IndexSpecialTopicCellViewModel class]]) &#123;</span><br><span class="line">        type = HomeCellTypeSpecialTopic;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return type;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>不是公共代码我们一般不加项目前缀，有点多余的感觉。</p>
+<h1 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h1><ul>
+<li>看到枚举的名字一般就知道这个cell对应到view上的哪个。清晰、易理解。</li>
+<li>要修改cell的顺序只要修改dataArray里面的顺序就可以。不用改动其它的代码。</li>
+<li>其它的代理方法也是这个写法，隐藏、添加cell、改动顺序什么的都不需要改动。</li>
+<li>易于维护，就算一个新人接手这样的代码，加上一定量的注释，可以很快的熟悉并上手修改。</li>
+</ul>
+<h1 id="一些其它的方式"><a href="#一些其它的方式" class="headerlink" title="一些其它的方式"></a>一些其它的方式</h1><ul>
+<li>cell的type也可以放到model里面去。</li>
+<li>如果有多个section的话，还可以定义一个section的枚举，再定义每个section对应的row的枚举。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/04/我是这样封装view的/" rel="next" title="我是这样封装view的">
+                <i class="fa fa-chevron-left"></i> 我是这样封装view的
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/06/iOS路由引入及遇到的问题/" rel="prev" title="iOS路由引入及遇到的问题">
+                iOS路由引入及遇到的问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Brant" />
+          <p class="site-author-name" itemprop="name">Brant</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题点介绍"><span class="nav-number">1.</span> <span class="nav-text">问题点介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#先从大的方面列几点建议："><span class="nav-number">2.</span> <span class="nav-text">先从大的方面列几点建议：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用魔法数字的缺点"><span class="nav-number">3.</span> <span class="nav-text">用魔法数字的缺点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#优点"><span class="nav-number">4.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一些其它的方式"><span class="nav-number">5.</span> <span class="nav-text">一些其它的方式</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Brant</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

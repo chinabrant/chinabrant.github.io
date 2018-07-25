@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="UITableView 优化," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="移动开发中，任何一个应用都或多或少的有列表的存在，列表的上下滑动直接关系到用户体验。如果处理不好，就会使得列表滑动起来有明显的卡顿效果。所以对列表的优化，让它更加的顺滑，就成了移动开发工程师们一直努力的方向。下面就说说一些通用的列表优化，很多优化还是要到具体的列表环境中。欢迎交流。">
+<meta name="keywords" content="UITableView 优化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UITableView列表优化">
+<meta property="og:url" content="http://yoursite.com/2016/05/08/UITableView列表优化/index.html">
+<meta property="og:site_name" content="Brant">
+<meta property="og:description" content="移动开发中，任何一个应用都或多或少的有列表的存在，列表的上下滑动直接关系到用户体验。如果处理不好，就会使得列表滑动起来有明显的卡顿效果。所以对列表的优化，让它更加的顺滑，就成了移动开发工程师们一直努力的方向。下面就说说一些通用的列表优化，很多优化还是要到具体的列表环境中。欢迎交流。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-25T03:34:53.036Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UITableView列表优化">
+<meta name="twitter:description" content="移动开发中，任何一个应用都或多或少的有列表的存在，列表的上下滑动直接关系到用户体验。如果处理不好，就会使得列表滑动起来有明显的卡顿效果。所以对列表的优化，让它更加的顺滑，就成了移动开发工程师们一直努力的方向。下面就说说一些通用的列表优化，很多优化还是要到具体的列表环境中。欢迎交流。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/05/08/UITableView列表优化/"/>
+
+
+
+
+
+  <title>UITableView列表优化 | Brant</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Brant</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">技术是需要总结的</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/05/08/UITableView列表优化/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brant">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brant">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">UITableView列表优化</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-05-08T10:21:47+08:00">
+                2016-05-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>移动开发中，任何一个应用都或多或少的有列表的存在，列表的上下滑动直接关系到用户体验。如果处理不好，就会使得列表滑动起来有明显的卡顿效果。所以对列表的优化，让它更加的顺滑，就成了移动开发工程师们一直努力的方向。下面就说说一些通用的列表优化，很多优化还是要到具体的列表环境中。欢迎交流。<br><a id="more"></a></p>
+<h3 id="一、Cell的复用"><a href="#一、Cell的复用" class="headerlink" title="一、Cell的复用"></a>一、Cell的复用</h3><p>最基本的如果一个<code>table view</code>要展示1000条数据，不可能生成1000个<code>view</code>。其实只要生成够在屏幕上显示的cell个数就可以了。<code>table view</code>已经做了这个优化。下面是<code>UITableView</code>的重用机制。</p>
+<blockquote>
+<p><code>UITableView</code>里面有一个array，存放当前能用的table view cell,当有新的cell滑入屏幕时，先查看这个array中有没有能用的cell，有能用的cell就直接返回，没有就重新生成一个cell，再返回，滑出屏幕的cell会放到这个array中。</p>
+</blockquote>
+<h3 id="二、图片的异步加载"><a href="#二、图片的异步加载" class="headerlink" title="二、图片的异步加载"></a>二、图片的异步加载</h3><p>这个是地球人都知道的，不能在主线程做耗时的操作。列表上显示的图片一般都比较小，所以可以不用原图，提升加载的速度。<code>github</code>上有很多很好的图片加载库<a href="https://github.com/rs/SDWebImage" target="_blank" rel="noopener">SDWebImage</a>  、<a href="https://github.com/ibireme/YYWebImage" target="_blank" rel="noopener">YYWebImage</a></p>
+<h3 id="三、高度的缓存"><a href="#三、高度的缓存" class="headerlink" title="三、高度的缓存"></a>三、高度的缓存</h3><p><code>cell</code>的布局可以用手动计算，也可以用AutoLayout。但是在<code>view</code>的数量达到一定量时，autolayout会严重影响性能。为了不让系统每次都计算cell的高度，第一次计算好后要将高度缓存起来。手动布局时，各控件的位置也可以缓存起来。</p>
+<h3 id="四、离屏渲染、像素对齐的处理"><a href="#四、离屏渲染、像素对齐的处理" class="headerlink" title="四、离屏渲染、像素对齐的处理"></a>四、离屏渲染、像素对齐的处理</h3><p>instruments(Core Animation)只能真机下使用</p>
+<ul>
+<li>离屏渲染：GPU在当前屏幕缓冲区以外新开辟一个缓冲区进行渲染操作<ul>
+<li>shouldRasterize(光栅化)</li>
+<li>masks</li>
+<li>shadows</li>
+<li>edge antialiasing (抗锯齿）</li>
+<li>opacity (不透明) 会产生图层混合</li>
+<li>layer属性设置圆角</li>
+<li>渐变<blockquote>
+<p>当使用圆角，阴影，遮罩的时候，图层属性的混合体被指定为在未预合成之前不能直接在屏幕中绘制，所以就需要屏幕外渲染被唤起。<br>屏幕外渲染并不意味着软件绘制，但是它意味着图层必须在被显示之前在一个屏幕外上下文中被渲染（不论CPU还是GPU）</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<p>在iOS中，有一个概念叫做像素对齐，如果像素不对齐，那么在GPU渲染时，需要进行插值计算，这个插值计算的过程会有性能损耗。</p>
+<h3 id="五、drawRect绘制"><a href="#五、drawRect绘制" class="headerlink" title="五、drawRect绘制"></a>五、drawRect绘制</h3><p>cell上的一些元素如果不要处理事件，可以直接绘制到cell上，减少GPU对layer的处理。</p>
+<h3 id="六、滑动时不设置图片-Runloop"><a href="#六、滑动时不设置图片-Runloop" class="headerlink" title="六、滑动时不设置图片(Runloop)"></a>六、滑动时不设置图片(Runloop)</h3><p>图片异步下载完成后，如果在滑动的时候设置到<code>UIImageView</code>上，会出现卡顿，所以要做到流畅的滑动，可以在滑动停止后设置。这里就可以用到<code>Runloop</code>了，当<code>UIScrollView</code>滑动时，<code>runloop</code>会切换到<code>UITrackingRunloopMode</code>,<code>UIScrollView</code>停止后会切换到<code>NSDefaultRunloopMode</code>所以，可以将设置图片的动作放在主线程的<code>NSDefaultRunloopMode</code>里。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[self performSelector:@selector(setImage:) onThread:[NSThread mainThread] withObject:image waitUntilDone:YES modes:@[NSDefaultRunLoopMode]];</span><br></pre></td></tr></table></figure></p>
+<h3 id="七、想到了再更，肯定还有…"><a href="#七、想到了再更，肯定还有…" class="headerlink" title="七、想到了再更，肯定还有…"></a>七、想到了再更，肯定还有…</h3><h3 id="一些优化查看工具"><a href="#一些优化查看工具" class="headerlink" title="一些优化查看工具"></a>一些优化查看工具</h3><ul>
+<li>Instruments(Core Animation查看FPS、离屏渲染等)</li>
+<li>实时显示FPS的库</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/UITableView-优化/" rel="tag"># UITableView 优化</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/04/浅淡iOS列表分页数据管理/" rel="prev" title="浅淡iOS列表数据管理">
+                浅淡iOS列表数据管理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Brant" />
+          <p class="site-author-name" itemprop="name">Brant</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、Cell的复用"><span class="nav-number">1.</span> <span class="nav-text">一、Cell的复用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、图片的异步加载"><span class="nav-number">2.</span> <span class="nav-text">二、图片的异步加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、高度的缓存"><span class="nav-number">3.</span> <span class="nav-text">三、高度的缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、离屏渲染、像素对齐的处理"><span class="nav-number">4.</span> <span class="nav-text">四、离屏渲染、像素对齐的处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、drawRect绘制"><span class="nav-number">5.</span> <span class="nav-text">五、drawRect绘制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、滑动时不设置图片-Runloop"><span class="nav-number">6.</span> <span class="nav-text">六、滑动时不设置图片(Runloop)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七、想到了再更，肯定还有…"><span class="nav-number">7.</span> <span class="nav-text">七、想到了再更，肯定还有…</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一些优化查看工具"><span class="nav-number">8.</span> <span class="nav-text">一些优化查看工具</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Brant</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
