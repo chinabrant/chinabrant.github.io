@@ -3,36 +3,25 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
-  "version.json": "358e7a21faf3f8c5da1b6a2b81085517",
-"index.html": "dfee7c1d33dfe764a88566e4526cfde5",
-"/": "dfee7c1d33dfe764a88566e4526cfde5",
-"main.dart.js": "a636b40be9d11679b32a0da9d62e54f7",
+  "version.json": "980547175e325fe622a3362b84d55b6a",
+"index.html": "3efdd777babcb753fa534044b9ddd147",
+"/": "3efdd777babcb753fa534044b9ddd147",
+"main.dart.js": "448d4d85cf72e0347d7686cda30df2a0",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
+"icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
+"icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
-"manifest.json": "b2b36909564cd9ac584825cf450fbeb7",
-"assets/AssetManifest.json": "11403e2858aaa57776ad44d7762924fd",
-"assets/NOTICES": "dc3583defb822ce16e785bb4d6a636a5",
+"manifest.json": "90c454c29b48f08bc06627d125f70466",
+"assets/AssetManifest.json": "2efbb41d7877d10aac9d091f58ccd7b9",
+"assets/NOTICES": "5e7feb15b4ea57eab8ff9bc6da0322de",
 "assets/FontManifest.json": "dc3d03800ccca4601324923c0b1d6d57",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "6d342eb68f170c97609e9da345464e5e",
-"assets/packages/flutter_markdown/assets/logo.png": "67642a0b80f3d50277c44cde8f450e50",
-"assets/fonts/MaterialIcons-Regular.otf": "1288c9e28052e028aba623321f7826ac",
-"assets/assets/images/github.png": "48eafe65e3b8976d2f5c6ea3bf1973e6",
-"assets/assets/blog/%25E5%2590%25AF%25E5%258A%25A8%25E9%25A1%25B5%25E4%25BC%2598%25E5%258C%2596%25EF%25BC%258Crunloop%25E7%259A%2584%25E4%25B8%2580%25E4%25B8%25AA%25E5%25B0%258F%25E6%258A%2580%25E6%259C%25AF%25E7%2582%25B9.md": "869e7339f29a0f656258285c7163c998",
-"assets/assets/blog/%25E6%2596%25B9%25E6%25B3%2595%25E4%25BA%25A4%25E6%258D%25A2%25E5%25AE%259E%25E7%258E%25B0App%25E5%259F%258B%25E7%2582%25B9-%25E5%258A%25A8%25E6%2580%2581%25E5%259F%258B%25E7%2582%25B9.md": "5a159672c4e731b00a9f079483e77fc0",
-"assets/assets/blog/%25E6%2588%2591%25E6%2598%25AF%25E8%25BF%2599%25E6%25A0%25B7%25E5%25B0%2581%25E8%25A3%2585view%25E7%259A%2584.md": "d06936bc68b17062766a87ff019db88f",
-"assets/assets/blog/iOS%25E8%25B7%25AF%25E7%2594%25B1%25E5%25BC%2595%25E5%2585%25A5%25E5%258F%258A%25E9%2581%2587%25E5%2588%25B0%25E7%259A%2584%25E9%2597%25AE%25E9%25A2%2598.md": "82ce2da1cb0acebb7ee0764cfbbb4a66",
-"assets/assets/blog/UITableView%25E5%2588%2597%25E8%25A1%25A8%25E4%25BC%2598%25E5%258C%2596.md": "2c091b0e871035f2999b616e0cd2b32c",
-"assets/assets/blog/xcassets%25E7%25AE%2580%25E4%25BB%258B.md": "33e4c51ac89fff9feaf830a720fa2afa",
-"assets/assets/blog/CocoaPods%25E6%2580%25BB%25E7%25BB%2593-%25E5%2591%25BD%25E4%25BB%25A4%25EF%25BC%258C%25E4%25BD%25BF%25E7%2594%25A8%25EF%25BC%258C%25E5%2588%259B%25E5%25BB%25BA%25E5%25BA%2593%25EF%25BC%258C%25E5%2588%259B%25E5%25BB%25BA%25E7%25A7%2581%25E6%259C%2589%25E4%25BB%2593%25E5%25BA%2593.md": "19e1f12bf8ea9389316157677ebcabdc",
-"assets/assets/blog/%25E4%25BB%25A3%25E7%25A0%2581%25E8%25AF%2584%25E5%25AE%25A1.md": "acc7a5e811c18a7e21072fef644334b3",
-"assets/assets/blog/%25E6%25B5%2585%25E6%25B7%25A1iOS%25E5%2588%2597%25E8%25A1%25A8%25E5%2588%2586%25E9%25A1%25B5%25E6%2595%25B0%25E6%258D%25AE%25E7%25AE%25A1%25E7%2590%2586.md": "70624b06c79ce52a10a09cb0460296ee",
-"assets/assets/blog/UITableView%25E5%2592%258CUICollectionView%25E5%25A4%259A%25E7%25A7%258D%25E7%25B1%25BB%25E5%259E%258Bcell%25E5%25A4%2584%25E7%2590%2586%25EF%25BC%258C%25E6%259B%25B4%25E5%25A5%25BD%25E5%259C%25B0%25E7%25BB%2584%25E7%25BB%2587%25E4%25BB%25A3%25E7%25A0%2581.md": "135037f60e58d6e5b877ca8576069f88",
-"assets/assets/blog/iOS-%25E5%258A%25A8%25E7%2594%25BB.md": "758f404851cba0721fc8cb656f39bc45",
-"assets/assets/blog/RxSwift%25E4%25B8%25AD%25E7%259A%2584Subject%25EF%25BC%2588PublishSubject-BehaviorSubject-ReplaySubject-Variable%25EF%25BC%2589.md": "3e280cf77ff871168d0022dadda32d2f",
-"assets/assets/blog/URL%25E6%258B%25A6%25E6%2588%25AA%25E8%25BD%25AC%25E6%258D%25A2%25E6%2588%2590%25E6%259C%25AC%25E5%259C%25B0%25E8%25B7%25AF%25E7%2594%25B1%25E6%25A8%25A1%25E5%259D%2597.md": "328a9e4b67d4c563d6399123974ac695",
-"assets/assets/blog/catalog.json": "895940357e51dc7f36c635d2b82c99bf",
-"assets/assets/blog/MVVM%25E4%25B8%25AD%25E4%25BD%25BF%25E7%2594%25A8RACCommand%25E5%25B0%2581%25E8%25A3%2585%25E7%25BD%2591%25E7%25BB%259C%25E8%25AF%25B7%25E6%25B1%2582.md": "ee248273c9a762e777872129a0464761"
+"assets/fonts/MaterialIcons-Regular.otf": "7e7a6cccddf6d7b20012a548461d5d81",
+"canvaskit/canvaskit.js": "c2b4e5f3d7a3d82aed024e7249a78487",
+"canvaskit/profiling/canvaskit.js": "ae2949af4efc61d28a4a80fffa1db900",
+"canvaskit/profiling/canvaskit.wasm": "95e736ab31147d1b2c7b25f11d4c32cd",
+"canvaskit/canvaskit.wasm": "4b83d89d9fecbea8ca46f2f760c5a9ba"
 };
 
 // The application shell files that are downloaded before a service worker can
@@ -50,7 +39,7 @@ self.addEventListener("install", (event) => {
   return event.waitUntil(
     caches.open(TEMP).then((cache) => {
       return cache.addAll(
-        CORE.map((value) => new Request(value + '?revision=' + RESOURCES[value], {'cache': 'reload'})));
+        CORE.map((value) => new Request(value, {'cache': 'reload'})));
     })
   );
 });
@@ -176,7 +165,7 @@ async function downloadOffline() {
     }
     currentContent[key] = true;
   }
-  for (var resourceKey in Object.keys(RESOURCES)) {
+  for (var resourceKey of Object.keys(RESOURCES)) {
     if (!currentContent[resourceKey]) {
       resources.push(resourceKey);
     }
