@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html data-redeviation-bs-uid="sg4c6z1fgmi">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>XueChinese</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="csrf-param" content="authenticity_token">
+  <meta name="csrf-token"
+    content="a8ELy-X0-YZl8HLdGwWUlWxw8WVbLS8OJgJV_Q4vVky6OghHmS_ALRDgPB9KotIzcV_X2qNXqlSEwABfftADLw">
+
+
+  <link rel="stylesheet" media="all"
+    href="./index_files/application-8c4cdc3942288456fb3ed546b85361410d4a08e54ffcc05b00fd4d9005cc881f.css"
+    data-turbolinks-track="reload">
+  <style type="text/css">
+    #_copy {
+      align-items: center;
+      background: #4494d5;
+      border-radius: 3px;
+      color: #fff;
+      cursor: pointer;
+      display: flex;
+      font-size: 13px;
+      height: 30px;
+      justify-content: center;
+      position: absolute;
+      width: 60px;
+      z-index: 1000
+    }
+
+    #select-tooltip,
+    #sfModal,
+    .modal-backdrop,
+    div[id^=reader-helper] {
+      display: none !important
+    }
+
+    .modal-open {
+      overflow: auto !important
+    }
+
+    ._sf_adjust_body {
+      padding-right: 0 !important
+    }
+
+    .super_copy_btns_div {
+      position: fixed;
+      width: 154px;
+      left: 10px;
+      top: 45%;
+      background: #e7f1ff;
+      border: 2px solid #4595d5;
+      font-weight: 600;
+      border-radius: 2px;
+      font-family: -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+      z-index: 5000
+    }
+
+    .super_copy_btns_logo {
+      width: 100%;
+      background: #4595d5;
+      text-align: center;
+      font-size: 12px;
+      color: #e7f1ff;
+      line-height: 30px;
+      height: 30px
+    }
+
+    .super_copy_btns_btn {
+      display: block;
+      width: 128px;
+      height: 28px;
+      background: #7f5711;
+      border-radius: 4px;
+      color: #fff;
+      font-size: 12px;
+      border: 0;
+      outline: 0;
+      margin: 8px auto;
+      font-weight: 700;
+      cursor: pointer;
+      opacity: .9
+    }
+
+    .super_copy_btns_btn:hover {
+      opacity: .8
+    }
+
+    .super_copy_btns_btn:active {
+      opacity: 1
+    }
+  </style>
+  <style class="redeviation-bs-style" data-name="content">
+    /*! (c) Philipp Koenig under MS-RSL */
+    body>div#redeviation-bs-indicator>div {
+      opacity: 0;
+      pointer-events: none
+    }
+
+    body>#redeviation-bs-overlay.redeviation-bs-visible,
+    body>#redeviation-bs-sidebar.redeviation-bs-visible {
+      opacity: 1;
+      pointer-events: auto
+    }
+
+    body.redeviation-bs-noscroll {
+      overflow: hidden !important
+    }
+
+    body>div#redeviation-bs-indicator>div {
+      position: absolute;
+      transform: translate3d(-40px, 0, 0);
+      top: 0;
+      left: 0;
+      width: 40px !important;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 0 10px 10px 0;
+      transition: opacity .3s, transform .3s;
+      z-index: 2
+    }
+
+    body>div#redeviation-bs-indicator>div>span {
+      -webkit-mask: no-repeat center/32px;
+      -webkit-mask-image: url(chrome-extension://jdbnofccmhefkmjbkkdkfiicjkgofkdh/img/icon-bookmark.svg);
+      background-color: #ffffff;
+      position: absolute;
+      display: block;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%
+    }
+
+    body>div#redeviation-bs-indicator[data-pos=right] {
+      left: auto;
+      right: 0
+    }
+
+    body>div#redeviation-bs-indicator[data-pos=right]>div {
+      transform: translate3d(40px, 0, 0);
+      left: auto;
+      right: 0;
+      border-radius: 10px 0 0 10px
+    }
+
+    body>div#redeviation-bs-indicator.redeviation-bs-fullHeight>div {
+      border-radius: 0
+    }
+
+    body>div#redeviation-bs-indicator.redeviation-bs-hover>div {
+      transform: translate3d(0, 0, 0);
+      opacity: 1
+    }
+
+    body>div#redeviation-bs-indicator[data-pos=left].redeviation-bs-has-lsb {
+      height: 100% !important;
+      top: 0 !important
+    }
+
+    body>div#redeviation-bs-indicator[data-pos=left].redeviation-bs-has-lsb>div {
+      background: rgba(0, 0, 0, 0)
+    }
+
+    body>div#redeviation-bs-indicator[data-pos=left].redeviation-bs-has-lsb>div>span {
+      -webkit-mask-position-y: 20px
+    }
+
+    body>#redeviation-bs-sidebar {
+      width: 350px;
+      max-width: none;
+      height: 0;
+      z-index: 2147483646;
+      background-color: rgba(0, 0, 0, 0.6) !important;
+      color-scheme: auto !important;
+      speak: none;
+      border: none;
+      display: block !important;
+      transform: translate3d(-350px, 0, 0);
+      transition: width 0s .3s, height 0s .3s, opacity .3s, transform .3s
+    }
+
+    body>#redeviation-bs-sidebar[data-pos=right] {
+      left: auto;
+      right: 0;
+      transform: translate3d(350px, 0, 0)
+    }
+
+    body>#redeviation-bs-sidebar.redeviation-bs-visible {
+      width: calc(100% + 350px);
+      height: 100%;
+      transform: translate3d(0, 0, 0);
+      transition: opacity .3s, transform .3s
+    }
+
+    body>#redeviation-bs-sidebar.sidepanel {
+      width: 100% !important
+    }
+
+    body>#redeviation-bs-sidebar.redeviation-bs-hideMask {
+      background: none !important
+    }
+
+    body>#redeviation-bs-sidebar.redeviation-bs-hideMask:not(.redeviation-bs-hover) {
+      width: calc(350px + 50px)
+    }
+
+    body>#redeviation-bs-overlay {
+      width: 100%;
+      max-width: none;
+      height: 100%;
+      z-index: 2147483647;
+      border: none;
+      speak: none;
+      background: rgba(0, 0, 0, 0.5) !important;
+      color-scheme: auto !important;
+      transition: opacity .3s
+    }
+  </style>
+</head>
+
+<body>
+  <h1 style="color:#172B4D;font-size:24px;font-weight:normal;text-align:center;">
+    <strong>Xue&nbsp;Chinese&nbsp;Terms&nbsp;Of&nbsp;Service</strong>
+  </h1>
+  <p>
+    <strong>Note: the Chinese version is only applicable to users in China, and the English version is only applicable
+      to users outside China.</strong>
+  </p>
+  <p>
+    <strong><a href="https://chinabrant.github.io/xue_chinese/termsofuse/cn/index.html">点击切换至中文</a></strong>
+  </p>
+  <p>
+    Last Updated: 31.12.2021
+  </p>
+  <p>
+    double-two&nbsp;(“ Xue Chinese ,” “we,” “us,” “our”) provides its services
+    (described below) to you through its mobile applications and
+    related services (collectively, such services, including any new features and applications, and the Site, the
+    “Service(s)”), subject to the following Terms of Service (as amended from time to time, the “Terms of Service”). We
+    reserve the right, at our sole discretion, to change or modify portions of these Terms of Service at any time. If we
+    do this, we will post the changes on this page and will indicate at the top of this page the date these terms were
+    last revised. We will also notify you, either through the Services user interface, in an email notification or
+    through other reasonable means. Any such changes will become effective no earlier than seven (7) days after they are
+    posted, except that changes addressing new functions of the Services or changes made for legal reasons will be
+    effective immediately. Your continued use of the Service after any such changes constitutes your acceptance of the
+    new Terms of Service. If you do not agree to abide by these or any future Terms of Service, do not use or access (or
+    continue to use or access) the Service. It is your responsibility to regularly check the Site to determine if there
+    have been changes to these Terms of Service and to review such changes.
+  </p>
+  <p>
+    In addition, when using certain services, you shall be subject to any additional terms applicable to such services
+    that may be posted on the Service from time to time, including, without limitation, the&nbsp;<a
+      href="https://chinabrant.github.io/xue_chinese/privacypolicy/en/index.html">Privacy Policy</a>. All such terms are
+    hereby
+    incorporated by reference into these Terms of Service.
+  </p>
+  <p>
+    &nbsp;
+  </p>
+  <p>
+    <strong>ACCESS AND USE OF THE SERVICE</strong>
+  </p>
+  <p>
+    <strong>&nbsp;</strong>
+  </p>
+  <p>
+    <strong>Services Description:</strong>&nbsp;The Xue Chinese Service is designed to allow users to learn and
+    practice&nbsp;Chinese, from a mobile application and/or website.
+  </p>
+  <p>
+    <strong>&nbsp;</strong>
+  </p>
+  <p>
+    <strong>Your Registration Obligations:</strong>&nbsp;You may be required to register with Xue Chinese in order to
+    access and use certain features of the Service. If you choose to register for the Service, you agree to provide and
+    maintain true, accurate, current and complete information about yourself as prompted by the Service’s registration
+    form. Registration data and certain other information about you are governed by our&nbsp;<a
+      href="https://chinabrant.github.io/xue_chinese/privacypolicy/en/index.html">Privacy Policy</a>. If you are under
+    18 years old, you
+    may use the Service, with or without registering, only with the approval of your parent or guardian.
+  </p>
+  <p>
+    <strong>&nbsp;</strong>
+  </p>
+  <p>
+    <strong>Member Account, Password and Security:&nbsp;</strong>You are responsible for maintaining the confidentiality
+    of your password and account, if any, and are fully responsible for any and all activities that occur under your
+    password or account. You agree to (a) immediately notify Xue Chinese of any unauthorized use of your password or
+    account or any other breach of security, and (b) ensure that you exit from your account at the end of each session
+    when accessing the Service and/or lock and password protect the device used to access the Service. Xue Chinese will
+    not be liable for any loss or damage arising from your failure to comply with this Section.
+  </p>
+  <p>
+    &nbsp;
+  </p>
+  <p>
+    <strong>Modifications to Service:</strong>&nbsp; Xue Chinese reserves the right to modify or discontinue,
+    temporarily or permanently, the Service (or any part thereof) with or without notice. You agree that Xue Chinese
+    shall not be liable to you or to any third party for any modification, suspension or discontinuance of the Service.
+  </p>
+  <p>
+    &nbsp;
+  </p>
+  <p>
+    <strong>General Practices Regarding Use and Storage:</strong>&nbsp;You acknowledge that Xue Chinese may establish
+    general practices and limits concerning use of the Service, including without limitation the maximum period of time
+    that data or other Content will be retained by the Service and the maximum storage space that will be allotted on
+    Xue Chinese ’s servers on your behalf. You agree that Xue Chinese has no responsibility or liability for the
+    deletion or failure to store any data or other Content maintained or transmitted by the Service. You acknowledge
+    that Xue Chinese reserves the right to terminate accounts that are inactive for an extended period of time. You
+    further acknowledge that Xue Chinese reserves the right to change these general practices and limits at any time, in
+    its sole discretion, with or without notice.
+  </p>
+  <p>
+    &nbsp;
+  </p>
+  <p>
+    <strong>Mobile Services:</strong>&nbsp;The Service includes certain services that are available via a mobile device,
+    including (i) the ability to browse the Service and the Site from a mobile device and (ii) the ability to access
+    certain features through an application downloaded and installed on a mobile device (collectively, the “Mobile
+    Services”). To the extent you access the Service through a mobile device, your wireless service carrier’s standard
+    charges, data rates and other fees may apply. In addition, downloading, installing, or using certain Mobile Services
+    may be prohibited or restricted by your carrier, and not all Mobile Services may work with all carriers or devices.
+  </p>
+  <p>
+    &nbsp;
+  </p>
+  <p>
+    <strong>CONDITIONS OF USE</strong>
+  </p>
+  <p>
+    &nbsp;
+  </p>
+  <p>
+    <strong>Your Rights and Grant of Rights in the Content:</strong>&nbsp;Some content that you share or upload, such
+    as&nbsp;comment, may be protected by intellectual property laws. You own the intellectual property rights (things
+    like copyrights or trademarks) for any such content that you create and share on Xue Chinese . Nothing in these
+    Terms takes away the rights you have to your own content. You are free to share your content with anyone else,
+    wherever you want. However, to provide our services we need you to give us some legal permissions (known as a
+    'license') to use this content. This is solely for the purpose of providing and improving our Products.
+    Specifically, when you share, post, or upload content that is covered by intellectual property rights on or in
+    connection with our Products, you grant us a non-exclusive, transferable, sub-licensable, royalty-free, and
+    worldwide license to host, use, distribute, modify, run, copy, publicly perform or display, translate, and create
+    derivative works of your content (consistent with your privacy and application settings). This means, for example,
+    that if you share a&nbsp;comment&nbsp;on Xue Chinese , you give us permission to store, copy, and share it with
+    others, (again, consistent with your settings) such as service providers that support our service or other Xue
+    Chinese Products you use. This license will end when your content is deleted from our systems by either you or Xue
+    Chinese . When content is deleted, it’s no longer visible to other users.
+  </p>
+  <p>
+    &nbsp;
+  </p>
+  <p>
+    <strong>User Conduct:</strong>&nbsp;You are solely responsible for all information, data, text, software, music,
+    sound, photographs, graphics, video, messages or other materials (“Content”) that you upload, post, publish or
+    display (hereinafter, “Post”) or email or otherwise transmit or use via the Service. The following are examples of
+    the kind of content and/or use that is illegal or prohibited by Xue Chinese . Xue Chinese reserves the right to
+    investigate and take appropriate legal action against anyone who, in Xue Chinese ’s sole discretion, violates this
+    provision, including without limitation, removing the offending Content from the Service, suspending or terminating
+    the account of such violators and reporting you to the law enforcement authorities. You agree to not use the Service
+    to Post, email or otherwise transmit any Content that:
+  </p>
+  <p>
+    &nbsp;i.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is unlawful, harmful, threatening, abusive, harassing,
+    tortious, excessively violent, defamatory, vulgar, obscene, sexual, pornographic, libelous, invasive of another’s
+    privacy, hateful racially, ethnically or otherwise objectionable;
+  </p>
+  <p>
+    ii.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;infringes any intellectual property or other proprietary rights
+    of any party;
+  </p>
+  <p>
+    iii.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;constitutes unsolicited or unauthorized advertising, promotional
+    materials, commercial activities and/or sales, “junk mail,”&nbsp; “spam,”&nbsp; “chain letters,”&nbsp; “pyramid
+    schemes,”&nbsp;“contests,”&nbsp; “sweepstakes,”&nbsp; or any other form of solicitation;
+  </p>
+  <p>
+    iv.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contains software viruses or any other computer code, files or
+    programs designed to interrupt, destroy or limit the functionality of any computer software or hardware or
+    telecommunications equipment;
+  </p>
+  <p>
+    v.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;in the sole judgment of Xue Chinese , is objectionable or which
+    restricts or inhibits any other person from using or enjoying the Service, or which may expose Xue Chinese or its
+    users to any harm or liability of any type;
+  </p>
+  <p>
+    vi.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;impersonate any person or entity, or falsely state or otherwise
+    misrepresent your affiliation with a person or entity;
+  </p>
+  <p>
+    vii.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;solicit personal information from anyone under the age of 18;
+  </p>
+  <p>
+    viii.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;harvest or collect email addresses or other contact information
+    of other users from the Service or the Site by electronic or other means for the purposes of sending unsolicited
+    emails or other unsolicited communications;
+  </p>
+  <p>
+    ix.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;advertises/markets a product or service, an individual’s personal
+    page, social account, or contact information, contributions/donations or any form of solicitation, or repetitive
+    posts that either have no useful value or are against our community guidelines;
+  </p>
+  <p>
+    x.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;interfere with or disrupt the Service or servers or networks
+    connected to the Service, or disobey any requirements, procedures, policies or regulations of networks connected to
+    the Service;
+  </p>
+  <p>
+    xi.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or violate any applicable local, state, national or international
+    law, or any regulations having the force of law;
+  </p>
+  <p>
+    xii.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;further or promote any criminal activity or enterprise or
+    provide instructional information about illegal activities;
+  </p>
+  <p>
+    xiii.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or obtain or attempt to access or otherwise obtain any
+    materials or information through any means not intentionally made available or provided for through the Service.
+  </p>
+  <p>
+    &nbsp;
+  </p>
+  <p>
+    <strong>Account verification:</strong>&nbsp;To make your experience as authentic as possible, and to ensure that all
+    our users are interacting with real people, we may ask you to confirm your identity by verifying your email address
+    or mobile phone number. We do not recommend opening multiple accounts, especially as it is not possible to merge or
+    share data between two or more accounts when you sign in to our app. We also reserve the right to refuse any new
+    account registrations if we find that you have previously registered for an account and your original or older
+    account was permanently suspended for violating these terms of service.
+  </p>
+  <p>
+    &nbsp;
+  </p>
+  <p>
+    <strong>Safety:</strong>&nbsp;In order to maintain a safe environment and empower free expression, we remove
+    accounts that are harmful to the community, including those that compromise the security of other accounts and our
+    services. We utilize a combination of manual systems to block and remove accounts that are used to persistently or
+    flagrantly abuse our community standards. We want to make sure that the content people are seeing on Xue Chinese is
+    authentic. We believe that authenticity creates a better environment for sharing, and that having people on Xue
+    Chinese who misrepresent themselves would harm the open environment.
+  </p>
+  <p>
+    In certain cases, we will seek further information about an account before taking actions ranging from temporarily
+    restricting accounts to permanently disabling them. We will evaluate accounts that misrepresent their identity by:
+  </p>
+  <ul>
+    <li>
+      providing any false personal information or creating an account for anyone other than yourself without permission;
+    </li>
+    <li>
+      using a name, user ID, nickname, or self-introduction that does not abide by our name policies;
+    </li>
+    <li>
+      using a profile picture that does not abide by our picture policies, including, but not limited to, company logos,
+      political figures, or other celebrities' photos;
+    </li>
+    <li>
+      creating a single account that represents or is used by more than one person;
+    </li>
+    <li>
+      maintaining multiple accounts as a single user;
+    </li>
+    <li>
+      being compromised;
+    </li>
+    <li>
+      being empty accounts with prolonged dormancy;
+    </li>
+    <li>
+      using multiple Xue Chinese accounts;
+    </li>
+  </ul>
+  <p>
+    &nbsp;
+  </p>
+  <p>
+    <strong>Fees:</strong>&nbsp;You acknowledge that Xue Chinese reserves the right to charge for any portion of the
+    Service and to change its fees (if any) from time to time in its discretion. You agree to pay all fees when due in
+    accordance with the terms set forth on the Site.
+  </p>
+  <p>
+    &nbsp;
+  </p>
+  <p>
+    <strong>Payment through the Service:</strong>&nbsp; Xue Chinese offers certain enhanced features of the Services
+    which you can purchase in a variety of terms including, but not limited to, a three month, one year, monthly
+    auto-recurring, yearly auto-recurring, and lifetime subscription (“Subscription”). A description of features
+    associated with Subscriptions is available via the Services. The amounts due and payable by you for a Subscription
+    that you purchase through the Services will be presented to you before you place your order.&nbsp;If you choose to
+    purchase a Subscription via the Services, you agree (a) to pay the applicable fees and any taxes; (b) that Xue
+    Chinese may charge your credit card for verification, pre-authorization and payment purposes if you purchase via the
+    site, or if you purchase via the App, charge your account with the app store or distribution platform (like the
+    Apple App Store or Google Play) where the App is made available (each, an “App Provider”); and (c) to bear any
+    additional charges that your App Provider, bank or other financial service provider may levy on you as well as any
+    taxes or fees that may apply to your order.&nbsp; You’ll receive a confirmation email after we confirm the payment
+    for your order. Your order is not binding on Xue Chinese until accepted and confirmed by Xue Chinese . All payments
+    made are non-refundable and non-transferable except as expressly provided in these Terms.
+  </p>
+  <p>
+    &nbsp;
+  </p>
+  <h3 style="color:#172B4D;font-size:16px;">
+    Renewal and Cancellation of Subscriptions:&nbsp;All amounts are payable and charged: (i) for one-off purchase (i.e.
+    lifetime Subscription), at the time you place your order; and (ii)&nbsp;For monthly, yearly, or other auto-recurring
+    subscriptions, at the beginning of the subscription and, because each such subscription renews automatically for an
+    additional period equal in length to the expiring subscription term until you cancel it, at the time of each renewal
+    until you cancel.&nbsp;You must cancel your monthly or yearly Subscription before it renews to avoid the billing of
+    the fees for the next Subscription period. If you purchase your Subscription via the Site,&nbsp;you can cancel the
+    renewal of your subscription at any time&nbsp;by contacting us by email at&nbsp;sjwu1234@gmail.com. If you purchase
+    your Subscription via an App Provider,&nbsp;you can cancel the renewal of your subscription&nbsp;with the App
+    Provider. You will not receive a refund for the fees you already paid for your current subscription period and you
+    will continue to receive the Services ordered until the end of your current Subscription period.
+  </h3>
+  <p>
+    If you have any concerns or objections regarding charges, you agree to raise them with us first and you agree not to
+    cancel or reject any credit card or App Provider charges unless you have made a reasonable attempt at resolving the
+    matter directly with Xue Chinese .
+  </p>
+  <p>
+    &nbsp;
+  </p>
+  <p>
+    Xue Chinese reserves the right to not process or to cancel your order in certain circumstances, for example, if your
+    credit card is declined, if we suspect the request or order is fraudulent, or in other circumstances Xue Chinese
+    deems appropriate in its sole discretion. Xue Chinese also reserves the right, in its sole discretion, to take steps
+    to verify your identity in connection with your order. Xue Chinese will either not charge you or refund the charges
+    for orders that we do not process or cancel.
+  </p>
+  <p>
+    &nbsp;
+  </p>
+  <p>
+    &nbsp;
+  </p>
+  <p>
+    <strong>Apple-Enabled Software Applications</strong>
+  </p>
+  <p>
+    Xue Chinese offers Software applications that are intended to be operated in connection with products made
+    commercially available by Apple Inc. (“Apple”), among other platforms. With respect to Software that is made
+    available for your use in connection with an Apple-branded product (such Software, “Apple-Enabled Software”), in
+    addition to the other terms and conditions set forth in these Terms of Service, the following terms and conditions
+    apply:
+  </p>
+  <ul>
+    <li>
+      Xue Chinese and you acknowledge that these Terms of Service are concluded between Xue Chinese and you only, and
+      not with Apple, and that as between Xue Chinese and Apple, Xue Chinese , not Apple, is solely responsible for the
+      Apple-Enabled Software and the content thereof.
+    </li>
+    <li>
+      You may not use the Apple-Enabled Software in any manner that is in violation of or inconsistent with the Usage
+      Rules set forth for Apple-Enabled Software in, or otherwise be in conflict with, the App Store Terms of Service.
+    </li>
+    <li>
+      Your license to use the Apple-Enabled Software is limited to a non-transferable license to use the Apple-Enabled
+      Software on an iOS Product that you own or control, as permitted by the Usage Rules set forth in the App Store
+      Terms of Service.
+    </li>
+    <li>
+      Apple has no obligation whatsoever to provide any maintenance or support services with respect to the
+      Apple-Enabled Software.
+    </li>
+    <li>
+      Apple is not responsible for any product warranties, whether express or implied by law. In the event of any
+      failure of the Apple-Enabled Software to conform to any applicable warranty, you may notify Apple, and Apple will
+      refund the purchase price for the Apple-Enabled Software to you, if any; and, to the maximum extent permitted by
+      applicable law, Apple will have no other warranty obligation whatsoever with respect to the Apple-Enabled
+      Software, or any other claims, losses, liabilities, damages, costs or expenses attributable to any failure to
+      conform to any warranty, which will be Xue Chinese ’s sole responsibility, to the extent it cannot be disclaimed
+      under applicable law.
+    </li>
+    <li>
+      Xue Chinese and you acknowledge that Xue Chinese , not Apple, is responsible for addressing any claims of you or
+      any third party relating to the Apple-Enabled Software or your possession and/or use of that Apple-Enabled
+      Software, including, but not limited to: (i) product liability claims; (ii) any claim that the Apple-Enabled
+      Software fails to conform to any applicable legal or regulatory requirement; and (iii) claims arising under
+      consumer protection or similar legislation.
+    </li>
+    <li>
+      In the event of any third party claim that the Apple-Enabled Software or the end-user’s possession and use of that
+      Apple-Enabled Software infringes that third party’s intellectual property rights, as between Xue Chinese and
+      Apple, Xue Chinese , not Apple, will be solely responsible for the investigation, defense, settlement and
+      discharge of any such intellectual property infringement claim.
+    </li>
+    <li>
+      If you have any questions, complaints or claims with respect to the Apple-Enabled Software, they should be
+      directed to Xue Chinese at&nbsp;<a class="external-link"
+        href="mailto:sjwu1234@gmail.com">sjwu1234@gmail.com</a>&nbsp;.
+    </li>
+  </ul>
+  <p>
+    Xue Chinese and you acknowledge and agree that Apple, and Apple’s subsidiaries, are third party beneficiaries of
+    these Terms of Service with respect to the Apple-Enabled Software, and that, upon your acceptance of the terms and
+    conditions of these Terms of Service, Apple will have the right (and will be deemed to have accepted the right) to
+    enforce these Terms of Service against you with respect to the Apple-Enabled Software as a third party beneficiary
+    thereof.
+  </p>
+  <p>
+    <strong>Special Notice for International Use; Export Controls:</strong>&nbsp;Software (defined below) available in
+    connection with the Service and the transmission of applicable data, if any, is subject to United States export
+    controls. No Software may be downloaded from the Service or otherwise exported or re-exported in violation of U.S.
+    export laws. Downloading or using the Software is at your sole risk. Recognizing the global nature of the Internet,
+    you agree to comply with all local rules and laws regarding your use of the Service, including as it concerns online
+    conduct and acceptable Content.
+  </p>
+  <p>
+    &nbsp;
+  </p>
+  <p>
+    <strong>Commercial Use:</strong>&nbsp;Unless otherwise expressly authorized herein or in the Service, you agree not
+    to display, distribute, license, perform, publish, reproduce, duplicate, copy, create derivative works from, modify,
+    sell, resell, exploit, transfer or transmit for any commercial purposes, any portion of the Service, use of the
+    Service, or access to the Service. The Service is for your personal use and may not be used for direct commercial
+    endeavors.
+  </p>
+  <h2 style="color:#172B4D;font-size:20px;font-weight:normal;">
+    Intellectual Property Rights
+  </h2>
+  <p>
+    <strong>Service Content, Software and Trademarks:</strong>&nbsp;You acknowledge and agree that the Service may
+    contain content (“Service Content”) that is protected by copyright, patent, trademark, trade secret or other
+    proprietary rights and laws. Except as expressly authorized by Xue Chinese , you agree not to modify, copy, frame,
+    scrape, rent, lease, loan, sell, distribute or create derivative works based on the Service or the Service Content,
+    in whole or in part, except that the foregoing does not apply to your own User Content (as defined below) that you
+    legally upload to the Service. In connection with your use of the Service you shall not engage in or use any data
+    mining, robots, scraping or similar data gathering or extraction methods. Any use of the Site or the Service Content
+    other than as specifically authorized herein is strictly prohibited. The technology and software underlying the
+    Service or distributed in connection therewith is the property of Xue Chinese , our affiliates and our partners (the
+    “Software”). You agree not to copy, modify, create a derivative work of, reverse engineer, reverse assemble or
+    otherwise attempt to discover any source code, sell, assign, sublicense, or otherwise transfer any right in the
+    Software. Any rights not expressly granted herein are reserved by Xue Chinese .
+  </p>
+  <p>
+    The Xue Chinese name and logos are trademarks and service marks of Xue Chinese (collectively the “ Xue Chinese
+    Trademarks”). Other company, product, and service names and logos used and displayed via the Service may be
+    trademarks or service marks of their respective owners who may or may not endorse or be affiliated with or connected
+    to Xue Chinese . Nothing in this Terms of Service or the Service should be construed as granting, by implication,
+    estoppel, or otherwise, any license or right to use any of Xue Chinese Trademarks displayed on the Service, without
+    our prior written permission in each instance. All goodwill generated from the use of Xue Chinese Trademarks will
+    inure to our exclusive benefit.
+  </p>
+  <p>
+    <strong>Third Party Material:</strong>&nbsp;Under no circumstances will Xue Chinese be liable in any way for any
+    Content posted by third parties or at the direction of users, including, but not limited to, for any errors or
+    omissions in any Content, or for any loss or damage of any kind incurred as a result of the use of any Content
+    posted, emailed or otherwise transmitted via the Service. You acknowledge that Xue Chinese does not pre-screen
+    Content, but that Xue Chinese and its designees shall have the right (but not the obligation) in their sole
+    discretion to refuse or remove any Content that is available via the Service. Without limiting the foregoing, Xue
+    Chinese and its designees shall have the right to remove any Content that violates these Terms of Service or is
+    deemed by Xue Chinese , in its sole discretion, to be otherwise objectionable. You agree that you must evaluate, and
+    bear all risks associated with, the use of any Content, including any reliance on the accuracy, completeness, or
+    usefulness of such Content.
+  </p>
+  <p>
+    <strong>User Content Posted on or through the Service:</strong>&nbsp;You are solely responsible for the Content and
+    other materials you Post on or through the Service or the Site or transmit to or share with other users or
+    recipients (collectively, “User Content”). You will not Post any Content that you did not create or that you do not
+    own all right, title and interest in and to, including, without limitation, all copyright and rights of publicity
+    contained therein. By Posting any User Content you hereby grant and will grant Xue Chinese and its affiliated
+    companies a nonexclusive, worldwide, royalty free, fully paid up, transferable, sublicenseable, perpetual,
+    irrevocable license to copy, display, transmit, perform, distribute, store, modify and otherwise use your User
+    Content in connection with the operation of the Service or the promotion, advertising or marketing thereof, in any
+    form, medium or technology now known or later developed.
+  </p>
+  <p>
+    You acknowledge and agree that any questions, comments, suggestions, ideas, feedback or other information about the
+    Site or the Service (“Submissions”), provided by you to Xue Chinese are non-confidential and Xue Chinese shall be
+    entitled to the unrestricted use and dissemination of these Submissions for any purpose, commercial or otherwise,
+    without acknowledgment or compensation to you.
+  </p>
+  <p>
+    You acknowledge and agree that Xue Chinese may preserve Content and may also disclose Content if required to do so
+    by law or in the good faith belief that such preservation or disclosure is reasonably necessary to: (a) comply with
+    legal process, applicable laws or government requests; (b) enforce these Terms of Service; (c) respond to claims
+    that any Content violates the rights of third parties; or (d) protect the rights, property, or personal safety of
+    Xue Chinese , its users and the public. You understand that the technical processing and transmission of the
+    Service, including your Content, may involve (a) transmissions over various networks; and (b) changes to conform and
+    adapt to technical requirements of connecting networks or devices.
+  </p>
+  <h2 style="color:#172B4D;font-size:20px;font-weight:normal;">
+    Third Party Websites
+  </h2>
+  <p>
+    The Service may provide, or third parties may provide, links or other access to other sites and resources on the
+    Internet. Xue Chinese has no control over such sites and resources and Xue Chinese is not responsible for and does
+    not endorse such sites and resources. You further acknowledge and agree that Xue Chinese shall not be responsible or
+    liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with use
+    of or reliance on any Content, events, goods or services available on or through any such site or resource. Any
+    dealings you have with third parties found while using the Service are between you and the third party, and you
+    agree that Xue Chinese is not liable for any loss or claim that you may have against any such third party.
+  </p>
+  <h2 style="color:#172B4D;font-size:20px;font-weight:normal;">
+    Third Party Services
+  </h2>
+  <p>
+    You may enable various online services to be directly integrated into your Xue Chinese experience. By directly
+    integrating these services into the Service, we make your online experiences richer and more personalized. To take
+    advantage of these features, we may ask you to register for or log into such services on the websites of their
+    respective providers. By enabling third party services within the Xue Chinese Service, you are allowing us to pass
+    your log-in information to these service providers for this purpose. For more information about the implications of
+    activating these third party services and Xue Chinese ’s use, storage and disclosure of information related to you
+    and your use of such services within Xue Chinese (including your friend lists and the like), please see our&nbsp;<a
+      href="https://chinabrant.github.io/xue_chinese/privacypolicy/en/index.html">Privacy Policy</a>. However, please
+    remember that the
+    manner in which third party services use, store and disclose your information is governed solely by the policies of
+    such third parties, and Xue Chinese shall have no liability or responsibility for the privacy practices or other
+    actions of any third party site or service that may be enabled within your Xue Chinese Service.
+  </p>
+  <p>
+    &nbsp;
+  </p>
+  <p>
+    In addition, Xue Chinese is not responsible for the accuracy, availability or reliability of any information,
+    Content, goods, data, opinions, advice or statements made available in connection with third party services. As
+    such, Xue Chinese is not liable for any damage or loss caused or alleged to be caused by or in connection with use
+    of or reliance on any such third party service. Xue Chinese enables these features merely as a convenience and the
+    inclusion of such features does not imply an endorsement or recommendation.
+  </p>
+  <h2 style="color:#172B4D;font-size:20px;font-weight:normal;">
+    Indemnity and Release
+  </h2>
+  <p>
+    You agree to release, indemnify and hold Xue Chinese and its affiliates and their officers, employees, directors and
+    agent harmless from any from any and all losses, damages, expenses, including reasonable attorneys’ fees, rights,
+    claims, actions of any kind and injury (including death) arising out of or relating to your use of the Service, any
+    User Content, your connection to the Service, your violation of these Terms of Service or your violation of any
+    rights of another. If you are a California resident, you waive California Civil Code Section 1542, which says: “A
+    general release does not extend to claims which the creditor does not know or suspect to exist in his favor at the
+    time of executing the release, which if known by him must have materially affected his settlement with the debtor.”
+    If you are a resident of another jurisdiction, you waive any comparable statute or doctrine.
+  </p>
+  <h2 style="color:#172B4D;font-size:20px;font-weight:normal;">
+    Disclaimer of Warranties
+  </h2>
+  <p>
+    YOUR USE OF THE SERVICE IS AT YOUR SOLE RISK. THE SERVICE IS PROVIDED ON AN “AS IS” AND “AS AVAILABLE” BASIS. Xue
+    Chinese EXPRESSLY DISCLAIMS ALL WARRANTIES OF ANY KIND, WHETHER EXPRESS, IMPLIED OR STATUTORY, INCLUDING, BUT NOT
+    LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT.
+  </p>
+  <p>
+    Xue Chinese MAKES NO WARRANTY THAT (I) THE SERVICE WILL MEET YOUR REQUIREMENTS, (II) THE SERVICE WILL BE
+    UNINTERRUPTED, TIMELY, SECURE, OR ERROR-FREE, (III) THE RESULTS THAT MAY BE OBTAINED FROM THE USE OF THE SERVICE
+    WILL BE ACCURATE OR RELIABLE, OR (IV) THE QUALITY OF ANY PRODUCTS, SERVICES, INFORMATION, OR OTHER MATERIAL
+    PURCHASED OR OBTAINED BY YOU THROUGH THE SERVICE WILL MEET YOUR EXPECTATIONS.
+  </p>
+  <h2 style="color:#172B4D;font-size:20px;font-weight:normal;">
+    Limitation of Liability
+  </h2>
+  <p>
+    YOU EXPRESSLY UNDERSTAND AND AGREE THAT Xue Chinese SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL,
+    CONSEQUENTIAL, EXEMPLARY DAMAGES, OR DAMAGES FOR LOSS OF PROFITS INCLUDING BUT NOT LIMITED TO, DAMAGES FOR LOSS OF
+    GOODWILL, USE, DATA OR OTHER INTANGIBLE LOSSES (EVEN IF Xue Chinese HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH
+    DAMAGES), WHETHER BASED ON CONTRACT, TORT, NEGLIGENCE, STRICT LIABILITY OR OTHERWISE, RESULTING FROM: (I) THE USE OR
+    THE INABILITY TO USE THE SERVICE; (II) THE COST OF PROCUREMENT OF SUBSTITUTE GOODS AND SERVICES RESULTING FROM ANY
+    GOODS, DATA, INFORMATION OR SERVICES PURCHASED OR OBTAINED OR MESSAGES RECEIVED OR TRANSACTIONS ENTERED INTO THROUGH
+    OR FROM THE SERVICE; (III) UNAUTHORIZED ACCESS TO OR ALTERATION OF YOUR TRANSMISSIONS OR DATA; (IV) STATEMENTS OR
+    CONDUCT OF ANY THIRD PARTY ON THE SERVICE; OR (V) ANY OTHER MATTER RELATING TO THE SERVICE. IN NO EVENT SHALL Xue
+    Chinese ’S TOTAL LIABILITY TO YOU FOR ALL DAMAGES, LOSSES OR CAUSES OF ACTION EXCEED THE AMOUNT YOU HAVE PAID Xue
+    Chinese IN THE LAST SIX (6) MONTHS, OR, IF GREATER, ONE HUNDRED DOLLARS ($100).
+  </p>
+  <p>
+    SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OF CERTAIN WARRANTIES OR THE LIMITATION OR EXCLUSION OF LIABILITY FOR
+    INCIDENTAL OR CONSEQUENTIAL DAMAGES. ACCORDINGLY, SOME OF THE ABOVE LIMITATIONS SET FORTH ABOVE MAY NOT APPLY TO
+    YOU. IF YOU ARE DISSATISFIED WITH ANY PORTION OF THE SERVICE OR WITH THESE TERMS OF SERVICE, YOUR SOLE AND EXCLUSIVE
+    REMEDY IS TO DISCONTINUE USE OF THE SERVICE.
+  </p>
+  <h2 style="color:#172B4D;font-size:20px;font-weight:normal;">
+    Termination
+  </h2>
+  <p>
+    You agree that Xue Chinese , in its sole discretion, may suspend or terminate your account (or any part thereof) or
+    use of the Service and remove and discard any Content within the Service, for any reason, including, without
+    limitation, for lack of use or if Xue Chinese believes that you have violated or acted inconsistently with the
+    letter or spirit of these Terms of Service. Any suspected fraudulent, abusive or illegal activity that may be
+    grounds for termination of your use of Service, may be referred to appropriate law enforcement authorities. Xue
+    Chinese may also in its sole discretion and at any time discontinue providing the Service, or any part thereof, with
+    or without notice. You agree that any termination of your access to the Service under any provision of this Terms of
+    Service may be effected without prior notice, and acknowledge and agree that Xue Chinese may immediately deactivate
+    or delete your account and all related information and files in your account and/or bar any further access to such
+    files or the Service. Further, you agree that Xue Chinese shall not be liable to you or any third-party for any
+    termination of your access to the Service.
+  </p>
+  <h2 style="color:#172B4D;font-size:20px;font-weight:normal;">
+    User Disputes
+  </h2>
+  <p>
+    You agree that you are solely responsible for your interactions with any other user in connection with the Service
+    and Xue Chinese will have no liability or responsibility with respect thereto. Xue Chinese reserves the right, but
+    has no obligation, to become involved in any way with disputes between you and any other user of the Service.
+  </p>
+  <h2 style="color:#172B4D;font-size:20px;font-weight:normal;">
+    General
+  </h2>
+  <p>
+    These Terms of Service constitute the entire agreement between you and Xue Chinese and govern your use of the
+    Service, superseding any prior agreements between you and Xue Chinese with respect to the Service. You also may be
+    subject to additional terms and conditions that may apply when you use affiliate or third-party services,
+    third-party content or third-party software. These Terms of Service shall be governed by the laws of the State of
+    California without regard to its conflict of law provisions. The failure of Xue Chinese to exercise or enforce any
+    right or provision of these Terms of Service shall not constitute a waiver of such right or provision. If any
+    provision of these Terms of Service is found by a court of competent jurisdiction to be invalid, the parties
+    nevertheless agree that the court should endeavor to give effect to the parties’ intentions as reflected in the
+    provision, and the other provisions of these Terms of Service remain in full force and effect. You agree that
+    regardless of any statute or law to the contrary, any claim or cause of action arising out of or related to use of
+    the Service or these Terms of Service must be filed within one (1) year after such claim or cause of action arose or
+    be forever barred. A printed version of this agreement and of any notice given in electronic form shall be
+    admissible in judicial or administrative proceedings based upon or relating to this agreement to the same extent and
+    subject to the same conditions as other business documents and records originally generated and maintained in
+    printed form. You may not assign this Terms of Service without the prior written consent of Xue Chinese , but Xue
+    Chinese may assign or transfer this Terms of Service, in whole or in part, without restriction. The section titles
+    in these Terms of Service are for convenience only and have no legal or contractual effect. Notices to you may be
+    made via either email or regular mail. The Service may also provide notices to you of changes to these Terms of
+    Service or other matters by displaying notices or links to notices generally on the Service.
+  </p>
+  <h2 style="color:#172B4D;font-size:20px;font-weight:normal;">
+    Your Privacy
+  </h2>
+  <p>
+    At Xue Chinese , we respect the privacy of our users. For details please see our&nbsp;<a
+      href="https://chinabrant.github.io/xue_chinese/privacypolicy/en/index.html">Privacy Policy</a>. By using the
+    Service, you consent to
+    our collection and use of personal data as outlined therein.
+  </p>
+  <p>
+    <br>
+  </p>
+
+
+
+  <bookmark-sidebar-ftw8x0u4q3p id="redeviation-bs-sidebar" class="notranslate" aria-hidden="true" data-theme="default"
+    data-pos="left"><template shadowrootmode="closed"><iframe
+        style="margin:0;padding: 0;border: none;width: 100%;height: 100%;"></iframe></template></bookmark-sidebar-ftw8x0u4q3p>
+  <div id="redeviation-bs-indicator" data-theme="default" data-pos="left" class="redeviation-bs-visible"
+    style="height: 21%; top: 26.7%;">
+    <div><span></span></div>
+  </div>
+</body>
+
+</html>

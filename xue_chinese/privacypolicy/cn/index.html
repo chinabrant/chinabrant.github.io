@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html data-redeviation-bs-uid="4npa654xcbl">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>XueChinese</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta name="csrf-param" content="authenticity_token">
+	<meta name="csrf-token"
+		content="k9-cCAf6VXAyanGDfApjWMyIK1UiT2ybr6lykfTZYIBCJJ-EeyFs20d6P0EtrSX-0acN6to16cENayczhCY14w">
+
+
+	<link rel="stylesheet" media="all"
+		href="./index_files/application-8c4cdc3942288456fb3ed546b85361410d4a08e54ffcc05b00fd4d9005cc881f.css"
+		data-turbolinks-track="reload">
+	<style type="text/css">
+		#_copy {
+			align-items: center;
+			background: #4494d5;
+			border-radius: 3px;
+			color: #fff;
+			cursor: pointer;
+			display: flex;
+			font-size: 13px;
+			height: 30px;
+			justify-content: center;
+			position: absolute;
+			width: 60px;
+			z-index: 1000
+		}
+
+		#select-tooltip,
+		#sfModal,
+		.modal-backdrop,
+		div[id^=reader-helper] {
+			display: none !important
+		}
+
+		.modal-open {
+			overflow: auto !important
+		}
+
+		._sf_adjust_body {
+			padding-right: 0 !important
+		}
+
+		.super_copy_btns_div {
+			position: fixed;
+			width: 154px;
+			left: 10px;
+			top: 45%;
+			background: #e7f1ff;
+			border: 2px solid #4595d5;
+			font-weight: 600;
+			border-radius: 2px;
+			font-family: -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+			z-index: 5000
+		}
+
+		.super_copy_btns_logo {
+			width: 100%;
+			background: #4595d5;
+			text-align: center;
+			font-size: 12px;
+			color: #e7f1ff;
+			line-height: 30px;
+			height: 30px
+		}
+
+		.super_copy_btns_btn {
+			display: block;
+			width: 128px;
+			height: 28px;
+			background: #7f5711;
+			border-radius: 4px;
+			color: #fff;
+			font-size: 12px;
+			border: 0;
+			outline: 0;
+			margin: 8px auto;
+			font-weight: 700;
+			cursor: pointer;
+			opacity: .9
+		}
+
+		.super_copy_btns_btn:hover {
+			opacity: .8
+		}
+
+		.super_copy_btns_btn:active {
+			opacity: 1
+		}
+	</style>
+	<style class="redeviation-bs-style" data-name="content">
+		/*! (c) Philipp Koenig under MS-RSL */
+		body>div#redeviation-bs-indicator>div {
+			opacity: 0;
+			pointer-events: none
+		}
+
+		body>#redeviation-bs-overlay.redeviation-bs-visible,
+		body>#redeviation-bs-sidebar.redeviation-bs-visible {
+			opacity: 1;
+			pointer-events: auto
+		}
+
+		body.redeviation-bs-noscroll {
+			overflow: hidden !important
+		}
+
+		body>div#redeviation-bs-indicator>div {
+			position: absolute;
+			transform: translate3d(-40px, 0, 0);
+			top: 0;
+			left: 0;
+			width: 40px !important;
+			height: 100%;
+			background: rgba(0, 0, 0, 0.5);
+			border-radius: 0 10px 10px 0;
+			transition: opacity .3s, transform .3s;
+			z-index: 2
+		}
+
+		body>div#redeviation-bs-indicator>div>span {
+			-webkit-mask: no-repeat center/32px;
+			-webkit-mask-image: url(chrome-extension://jdbnofccmhefkmjbkkdkfiicjkgofkdh/img/icon-bookmark.svg);
+			background-color: #ffffff;
+			position: absolute;
+			display: block;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%
+		}
+
+		body>div#redeviation-bs-indicator[data-pos=right] {
+			left: auto;
+			right: 0
+		}
+
+		body>div#redeviation-bs-indicator[data-pos=right]>div {
+			transform: translate3d(40px, 0, 0);
+			left: auto;
+			right: 0;
+			border-radius: 10px 0 0 10px
+		}
+
+		body>div#redeviation-bs-indicator.redeviation-bs-fullHeight>div {
+			border-radius: 0
+		}
+
+		body>div#redeviation-bs-indicator.redeviation-bs-hover>div {
+			transform: translate3d(0, 0, 0);
+			opacity: 1
+		}
+
+		body>div#redeviation-bs-indicator[data-pos=left].redeviation-bs-has-lsb {
+			height: 100% !important;
+			top: 0 !important
+		}
+
+		body>div#redeviation-bs-indicator[data-pos=left].redeviation-bs-has-lsb>div {
+			background: rgba(0, 0, 0, 0)
+		}
+
+		body>div#redeviation-bs-indicator[data-pos=left].redeviation-bs-has-lsb>div>span {
+			-webkit-mask-position-y: 20px
+		}
+
+		body>#redeviation-bs-sidebar {
+			width: 350px;
+			max-width: none;
+			height: 0;
+			z-index: 2147483646;
+			background-color: rgba(0, 0, 0, 0.6) !important;
+			color-scheme: auto !important;
+			speak: none;
+			border: none;
+			display: block !important;
+			transform: translate3d(-350px, 0, 0);
+			transition: width 0s .3s, height 0s .3s, opacity .3s, transform .3s
+		}
+
+		body>#redeviation-bs-sidebar[data-pos=right] {
+			left: auto;
+			right: 0;
+			transform: translate3d(350px, 0, 0)
+		}
+
+		body>#redeviation-bs-sidebar.redeviation-bs-visible {
+			width: calc(100% + 350px);
+			height: 100%;
+			transform: translate3d(0, 0, 0);
+			transition: opacity .3s, transform .3s
+		}
+
+		body>#redeviation-bs-sidebar.sidepanel {
+			width: 100% !important
+		}
+
+		body>#redeviation-bs-sidebar.redeviation-bs-hideMask {
+			background: none !important
+		}
+
+		body>#redeviation-bs-sidebar.redeviation-bs-hideMask:not(.redeviation-bs-hover) {
+			width: calc(350px + 50px)
+		}
+
+		body>#redeviation-bs-overlay {
+			width: 100%;
+			max-width: none;
+			height: 100%;
+			z-index: 2147483647;
+			border: none;
+			speak: none;
+			background: rgba(0, 0, 0, 0.5) !important;
+			color-scheme: auto !important;
+			transition: opacity .3s
+		}
+	</style>
+</head>
+
+<body>
+	<p>
+	</p>
+	<h1
+		style="text-align:center;color:#172B4D;font-size:24px;font-weight:normal;font-family:-apple-system, BlinkMacSystemFont, ;">
+		<strong>Xue Chinese 隐私政策</strong>
+	</h1>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		<strong><br>
+		</strong>
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		<strong>注：中文版隐私政策仅适用于中国境内的用户，英文版隐私政策仅适用于非中国境内用户。&nbsp;</strong><a
+			href="https://chinabrant.github.io/xue_chinese/privacypolicy/en/index.html">Click to switch to English</a>
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		最新更新：2023.12.01
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		&nbsp;
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		Xue Chinese 是由double-two（以下简称“我们”）研发和运营的中文学习平台。我们非常重视您的隐私和个人信息，并始终致力于保护您的隐私。为了您更好地使用 Xue Chinese
+		服务，我们专门制定了本隐私政策，希望向您说明我们在您使用 Xue Chinese 服务时收集何种信息以及如何收集、使用和保护这些信息。
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		&nbsp;
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		在使用 Xue Chinese 服务前，请您务必仔细阅读我们的隐私政策。除非贵方已阅读并接受本协议的全部条款，否则请贵方立即停止使用 Xue Chinese
+		服务。一旦贵方勾选或点击“同意《隐私政策》”按钮，即视为贵方已充分理解并接受本隐私政策。
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		&nbsp;
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		<strong>第一部分 定义</strong>
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		用户：下称“您”或“用户”，是指注册、登录、使用、浏览、获取本政策项下服务的个人或组织。
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		个人信息：指以电子或者其他方式记录的能够单独或者与其他信息结合识别特定自然人身份或者反映特定自然人活动情况的各种信息。
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		&nbsp;
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		<strong>第二部分 隐私政策</strong>
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		本隐私政策部分将帮助您了解以下内容：
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		一、我们收集的信息
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		二、信息的存储
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		三、信息安全
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		四、我们如何使用信息
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		五、披露给第三方
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		六、我们的儿童信息政策
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		七、联系我们
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		&nbsp;
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		<strong>一、我们收集的信息</strong>
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		<strong>1、注册账号</strong>
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		• 当您注册 Xue Chinese 服务时，我们会收集您的<strong>设备 MAC 地址、唯一设备识别码（IMEI/android ID/IDFA/OPENUDID/GUID、SIM 卡 IMSI
+			信息）&nbsp;</strong>，用于标识您为 Xue Chinese 的用户。如果您使用 QQ 、微信或 Apple ID 关联登录 Xue Chinese ，我们会收集您&nbsp;<strong>QQ
+			或微信的唯一标识、头像、昵称</strong>，或者&nbsp;<strong>Apple ID
+			的唯一标识</strong>，用于保存您的登录信息，使您在使用不同设备登录时能够同步您的数据。在您使用第三方帐号注册或登录后，您的第三方帐号将会与 Xue Chinese 帐号进行绑定。
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		• 当您创建 Xue Chinese ID 时，我们会收集您的<strong>个人信息</strong>，包括<strong>电子邮件地址、系统语言</strong>将有助于我们为您提供更好的服务和体验。
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		•
+		我们会可能会收集您的<strong>手机号码</strong>，用于校验您的用户信息。<strong>手机号码</strong>属于敏感信息，收集<strong>手机号码</strong>是为了满足相关法律法规的网络实名制要求。若您拒绝提供<strong>手机号码</strong>，则会影响您在
+		Xue Chinese 上的正常使用。
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		<strong>2、向您提供网络安全及运营安全保障</strong>
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		• 为保障您的账户、网络、运营及系统安全，预防钓鱼网站欺诈及木马病毒，在您使用本产品的过程中，我们的服务器会自动记录您的手机发送的信息（“<strong>日志数据</strong>”）。该日志数据可能<strong>包含诸相关信息（例如
+			IMSI 识别码、运营商、MAC
+			地址、IMEI、应用列表、设备机型、操作系统及版本、客户端版本、设备分辨率、包名、设备设置、进程及唯一设备标识符、软硬件特征信息）</strong>、<strong>设备所在位置相关信息（例如 IP 地址、GPS
+			位置以及能够提供相关信息的 WLAN 接入点、蓝牙和基站传感器信息）</strong>。
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		<strong>3、其他情况</strong>
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		根据相关法律法规及国家标准，以下情形中，我们可能会收集、使用您的相关个人信息无需征求您的授权同意：
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		• 与国家安全、国防安全等国家利益直接相关的；与公共安全、公共卫生、公共知情等重大公共利益直接相关的；
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		• 与犯罪侦查、起诉、审判和判决执行等直接相关的；
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		• 出于维护您或其他个人的生命、财产、声誉等重大合法权益但又很难得到本人同意的；
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		• 所收集的个人信息是您自行向社会公众公开的；
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		• 从合法公开披露的信息中收集个人信息的，如合法的新闻报道、政府信息公开等渠道；
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		• 根据您要求签订和履行合同所必需的；
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		• 用于维护所提供的产品或服务的安全稳定运行所必需的，例如发现、处置产品或服务的故障；
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		• 出于公共利益开展统计或学术研究所必要，且其对外提供学术研究或描述的结果时，对结果中所包含的个人信息进行去标识化处理的；
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		• 法律法规规定的其他情形。
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		&nbsp;
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		<strong>二、信息的存储</strong>
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		<strong>1、信息存储的方式和期限</strong>
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		• 我们会通过安全的方式存储您的信息，包括本地存储（例如利用APP进行数据缓存）、数据库和服务器日志。
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		• 一般情况下，我们只会在为实现服务目的所必需的时间内或法律法规规定的条件下存储您的个人信息。您可以自主选择删除历史数据等您在使用 Xue Chinese
+		服务时提供的和产生的个人信息，如果您选择删除上述信息，我们也将相应删除相应的个人信息。
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		<strong>2、管理和保留您的数据</strong>
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		• 法律义务和问题。例如，我们会基于法律原因保留您的信息，当我们有法律义务保留数据、执行和防止违反我们的条款或在必要时保护权利、财产和用户。
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		• 出于运营保留需求。一般而言，我们仅在为实现目的所必需的时间内保留你的个人信息。您的公开信息会保留直到您删除帐户撤回同意为止，包括个人资料和评论，当您删除帐号或评论时，数据将被删除或匿名化。
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		<strong>3、其他国家数据传输</strong>
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		Xue Chinese 是全球中文学习平台。数据被传输到您本国以外的其他国家。数据传输会遵循相关的法律，并得到适当且安全的处理。
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		<strong>三、信息安全</strong>
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		<strong>1、数据保护</strong>
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		• 我们已经采取了广泛的技术和组织措施保护您的数据免受潜在风险的影响，例如未经授权的登录或访问，未经授权的细读，修改或分发以及防止丢失，删除或滥用。
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		• 为了保护您的个人数据免遭第三方未经授权的访问，我们在必要时使用SSL和TLS加密来保护数据传输。 这是用于在线和移动服务（尤其是Internet）的标准加密过程。
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		<strong>2、安全事件处置措施</strong>
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		•
+		若发生个人信息泄露、损毁、丢失等安全事件，我们会启动应急预案，阻止安全事件扩大。安全事件发生后，我们会及时以推送通知、邮件等形式告知您安全事件的基本情况、我们即将或已经采取的处置措施和补救措施，以及我们对您的应对建议。如果难以实现逐一告知，我们将通过公告等方式发布警示。
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		<strong>3、您如何管理您的信息</strong>
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		• 您可通过【我→账户】访问、修改您的手机号码信息，帐号密码，访问、修改您的QQ帐号、微信帐号、Apple ID；
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		• 当您发现我们处理关于您的信息有错误时，您有权要求我们做出更正或补充。我们在提供服务的过程，可能需要您开通一些设备权限，例如通知、相册、麦克风权限。您可以在设备的【设置】功能中随时选择关闭部分或者全部权限，从而拒绝 Xue
+		Chinese 平台收集您的个人信息。
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		•&nbsp;如果您需要注销您的账户。您可以发邮件（邮件地址：<a class="external-link"
+			href="mailto:sjwu1234@gmail.com">sjwu1234@gmail.com</a>）给我们，我们将在 7 个工作日内认证您的身份真实性后删除您的个人信息。
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		&nbsp;
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		<strong>四、我们如何使用信息</strong>
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		我们严格遵守法律法规的规定以及与用户的约定，按照本隐私保护指引所述使用收集的信息，以向您提供更为优质的服务。
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		• 我们使用您的个人信息来分析用户人口统计。
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		• 我们可能会使用您的个人信息发送重要通知，例如有关购买的信息以及我们条款，条件和政策的更改。
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		• 我们不会将日志数据视为个人信息，也不会将其与其他个人信息结合使用，尽管我们可能出于了解或改进服务的目的汇总，分析和评估此类信息。
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		•
+		设备信息：我们会根据您在软件安装及使用中授予的具体权限，接收并记录您所使用的设备相关信息（例如IMSI识别码、设备机型、操作系统及版本、客户端版本、设备分辨率、包名、设备设置、进程及唯一设备标识符、软硬件特征信息）、设备所在位置相关信息（例如IP
+		地址、GPS位置以及能够提供相关信息的WLAN接入点、蓝牙和基站传感器信息）
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		请注意，单独的设备信息、日志信息是无法识别特定自然人身份的信息。如果我们将这类非个人信息与其他信息结合用于识别特定自然人身份，或者将其与个人信息结合使用，则在结合使用期间，这类非个人信息将被视为个人信息，除取得您授权或法律法规另有规定外，我们会将该类个人信息做匿名化、去标识化处理。
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		&nbsp;
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		<strong>五、披露给第三方</strong>
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		<strong>1、原则</strong>
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		• 如果您被批准服务，则您的帐户将受 Xue Chinese 各自的隐私政策的约束。个人信息仅由 Xue Chinese 用于提供或改善我们的产品，服务和广告；不会出于营销目的与第三方共享。
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		•&nbsp;<strong>接入第三方服务由相关的第三方负责运营，须受第三方自己的服务条款及信息保护声明（而非本《 Xue Chinese 隐私政策》）约束。</strong>
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		• 我们仅会出于正当、必要、特定的目的共享您的信息。对我们与之共享信息的第三方服务商，我们会要求他们履行相关保密义务并采取相应的安全措施。
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		• 同时我们以汇总形式收集和使用此分析信息，因此无法合理地操纵它来识别任何特定的个人用户。
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		<strong>2、接入第三方SDK目录：</strong>
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		<strong>UMeng</strong>
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		<strong>使用目的：</strong>进行APP运营统计与分析
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		<strong>收集信息类型：</strong>设备信息（IMEI/MAC/Android ID/IDFA/OAID/OpenUDID/GUID/SIM卡IMSI/ICCID）、位置信息、网络信息&nbsp;
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		<strong>官方说明或隐私政策：</strong><a href="https://www.umeng.com/page/policy">https://www.umeng.com/page/policy</a>
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		<strong><br>
+		</strong>
+	</p>
+
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		<br>
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		<strong>六、我们的儿童信息政策</strong>
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		12岁以下的儿童不允许使用 Xue Chinese 。如果您位于欧洲经济区（EEA），您只能在您超过根据本国法律可以提供数据处理许可的年龄时使用 Xue Chinese ，或者如果已经向我们提供了父母同意您使用 Xue
+		Chinese 的许可，则您可以使用 Xue Chinese 。如果您是父母，并且得知自己的孩子正在使用 Xue Chinese 但不想让他们使用，请联系（<a class="external-link"
+			href="mailto:sjwu1234@gmail.com">sjwu1234@gmail.com</a>）
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		我们建议：<strong>任何未成年人参加网上活动应事先取得父母或其他监护人（以下简称"监护人"）的同意。</strong>我们将根据国家相关法律法规的规定保护未成年人的相关信息。
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		&nbsp;
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		<strong>七、联系我们</strong>
+	</p>
+
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		联系邮箱：<a class="external-link" href="mailto:sjwu1234@gmail.com">sjwu1234@gmail.com</a>
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		<br>
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		<strong>本隐私政策的发布日期</strong>
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		2023.12.01
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		我们保留随时对此数据隐私声明进行修改的权利，并可能会适时对本隐私保护指引进行修订。
+	</p>
+	<p style="color:#172B4D;font-family:-apple-system, BlinkMacSystemFont, ;font-size:14px;">
+		若您不同意修改后的隐私权政策，您有权并应立即停止使用 Xue Chinese 的服务。如果您继续使用 Xue Chinese 的服务，则视为您接受 Xue Chinese 对本政策相关条款所做的修改。
+	</p>
+	<p></p>
+	<p>
+		<br>
+	</p>
+
+
+
+	<bookmark-sidebar-fp1jnxhlx5 id="redeviation-bs-sidebar" class="notranslate" aria-hidden="true" data-theme="default"
+		data-pos="left"><template shadowrootmode="closed"><iframe
+				style="margin:0;padding: 0;border: none;width: 100%;height: 100%;"></iframe></template></bookmark-sidebar-fp1jnxhlx5>
+	<div id="redeviation-bs-indicator" data-theme="default" data-pos="left" class="redeviation-bs-visible"
+		style="height: 21%; top: 26.7%;">
+		<div><span></span></div>
+	</div>
+</body>
+
+</html>

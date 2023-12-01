@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html data-redeviation-bs-uid="3w1bifmdo69">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>XueChinese</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="csrf-param" content="authenticity_token">
+  <meta name="csrf-token"
+    content="AnsXIsZ2Sj9pQUcgrjkyOsre9zYQd6vYGV8HqRLS40TTgBSuuq1zlBxRCeL_nnSc1_HRiegNLoK7nVILYi22Jw">
+
+
+  <link rel="stylesheet" media="all"
+    href="./index_files/application-8c4cdc3942288456fb3ed546b85361410d4a08e54ffcc05b00fd4d9005cc881f.css"
+    data-turbolinks-track="reload">
+  <style type="text/css">
+    #_copy {
+      align-items: center;
+      background: #4494d5;
+      border-radius: 3px;
+      color: #fff;
+      cursor: pointer;
+      display: flex;
+      font-size: 13px;
+      height: 30px;
+      justify-content: center;
+      position: absolute;
+      width: 60px;
+      z-index: 1000
+    }
+
+    #select-tooltip,
+    #sfModal,
+    .modal-backdrop,
+    div[id^=reader-helper] {
+      display: none !important
+    }
+
+    .modal-open {
+      overflow: auto !important
+    }
+
+    ._sf_adjust_body {
+      padding-right: 0 !important
+    }
+
+    .super_copy_btns_div {
+      position: fixed;
+      width: 154px;
+      left: 10px;
+      top: 45%;
+      background: #e7f1ff;
+      border: 2px solid #4595d5;
+      font-weight: 600;
+      border-radius: 2px;
+      font-family: -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+      z-index: 5000
+    }
+
+    .super_copy_btns_logo {
+      width: 100%;
+      background: #4595d5;
+      text-align: center;
+      font-size: 12px;
+      color: #e7f1ff;
+      line-height: 30px;
+      height: 30px
+    }
+
+    .super_copy_btns_btn {
+      display: block;
+      width: 128px;
+      height: 28px;
+      background: #7f5711;
+      border-radius: 4px;
+      color: #fff;
+      font-size: 12px;
+      border: 0;
+      outline: 0;
+      margin: 8px auto;
+      font-weight: 700;
+      cursor: pointer;
+      opacity: .9
+    }
+
+    .super_copy_btns_btn:hover {
+      opacity: .8
+    }
+
+    .super_copy_btns_btn:active {
+      opacity: 1
+    }
+  </style>
+  <style class="redeviation-bs-style" data-name="content">
+    /*! (c) Philipp Koenig under MS-RSL */
+    body>div#redeviation-bs-indicator>div {
+      opacity: 0;
+      pointer-events: none
+    }
+
+    body>#redeviation-bs-overlay.redeviation-bs-visible,
+    body>#redeviation-bs-sidebar.redeviation-bs-visible {
+      opacity: 1;
+      pointer-events: auto
+    }
+
+    body.redeviation-bs-noscroll {
+      overflow: hidden !important
+    }
+
+    body>div#redeviation-bs-indicator>div {
+      position: absolute;
+      transform: translate3d(-40px, 0, 0);
+      top: 0;
+      left: 0;
+      width: 40px !important;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 0 10px 10px 0;
+      transition: opacity .3s, transform .3s;
+      z-index: 2
+    }
+
+    body>div#redeviation-bs-indicator>div>span {
+      -webkit-mask: no-repeat center/32px;
+      -webkit-mask-image: url(chrome-extension://jdbnofccmhefkmjbkkdkfiicjkgofkdh/img/icon-bookmark.svg);
+      background-color: #ffffff;
+      position: absolute;
+      display: block;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%
+    }
+
+    body>div#redeviation-bs-indicator[data-pos=right] {
+      left: auto;
+      right: 0
+    }
+
+    body>div#redeviation-bs-indicator[data-pos=right]>div {
+      transform: translate3d(40px, 0, 0);
+      left: auto;
+      right: 0;
+      border-radius: 10px 0 0 10px
+    }
+
+    body>div#redeviation-bs-indicator.redeviation-bs-fullHeight>div {
+      border-radius: 0
+    }
+
+    body>div#redeviation-bs-indicator.redeviation-bs-hover>div {
+      transform: translate3d(0, 0, 0);
+      opacity: 1
+    }
+
+    body>div#redeviation-bs-indicator[data-pos=left].redeviation-bs-has-lsb {
+      height: 100% !important;
+      top: 0 !important
+    }
+
+    body>div#redeviation-bs-indicator[data-pos=left].redeviation-bs-has-lsb>div {
+      background: rgba(0, 0, 0, 0)
+    }
+
+    body>div#redeviation-bs-indicator[data-pos=left].redeviation-bs-has-lsb>div>span {
+      -webkit-mask-position-y: 20px
+    }
+
+    body>#redeviation-bs-sidebar {
+      width: 350px;
+      max-width: none;
+      height: 0;
+      z-index: 2147483646;
+      background-color: rgba(0, 0, 0, 0.6) !important;
+      color-scheme: auto !important;
+      speak: none;
+      border: none;
+      display: block !important;
+      transform: translate3d(-350px, 0, 0);
+      transition: width 0s .3s, height 0s .3s, opacity .3s, transform .3s
+    }
+
+    body>#redeviation-bs-sidebar[data-pos=right] {
+      left: auto;
+      right: 0;
+      transform: translate3d(350px, 0, 0)
+    }
+
+    body>#redeviation-bs-sidebar.redeviation-bs-visible {
+      width: calc(100% + 350px);
+      height: 100%;
+      transform: translate3d(0, 0, 0);
+      transition: opacity .3s, transform .3s
+    }
+
+    body>#redeviation-bs-sidebar.sidepanel {
+      width: 100% !important
+    }
+
+    body>#redeviation-bs-sidebar.redeviation-bs-hideMask {
+      background: none !important
+    }
+
+    body>#redeviation-bs-sidebar.redeviation-bs-hideMask:not(.redeviation-bs-hover) {
+      width: calc(350px + 50px)
+    }
+
+    body>#redeviation-bs-overlay {
+      width: 100%;
+      max-width: none;
+      height: 100%;
+      z-index: 2147483647;
+      border: none;
+      speak: none;
+      background: rgba(0, 0, 0, 0.5) !important;
+      color-scheme: auto !important;
+      transition: opacity .3s
+    }
+  </style>
+</head>
+
+<body>
+  <h1 style="color:#172B4D;font-size:24px;font-weight:normal;text-align:center;">
+    Xue&nbsp;Chinese&nbsp;用户协议
+  </h1>
+  <p>
+    <strong>注：中文版用户协议仅适用于中国境内的用户，英文版用户协议仅适用于非中国境内用户。&nbsp;</strong><a
+      href="https://chinabrant.github.io/xue_chinese/termsofuse/en/index.html">Click to switch to English</a>
+  </p>
+  <p>
+    <br>
+  </p>
+  <p>
+    更新日期：2021.12.31
+  </p>
+  <p>
+    Xue Chinese 是由double-two（以下简称“ Xue Chinese
+    ”，“我们”，“我们的”）研发和运营的中文学习平台。通过移动应用程序和相关服务（统称服务，包括任何新功能和应用程序，以及本网站，以下简称“服务”）向您提供其服务（如下所述），但受以下服务条款（不时修订的“服务条款”）的约束。我们保留自行决定随时更改或修改本服务条款的权利。如果我们进行修改，我们将在此页面上发布更改，并在此页面的顶部标明这些条款的最新修订日期。我们还将通过“服务”用户界面，电子邮件通知或其他合理方式通知您。任何此类更改将在发布后不超过七（7）天生效，但针对服务新功能的更改或出于法律原因进行的更改将立即生效。在进行任何此类更改后，您继续使用本服务即表示您接受新的服务条款。如果您不同意遵守这些或任何未来的服务条款，请不要使用或访问（或继续使用或访问）服务。您有责任定期查看本网站，以确定这些服务条款是否已更改，并查看此类更改。
+  </p>
+  <p>
+    此外，在使用某些服务时，您应遵守可能不时在服务上发布的适用于此类服务的任何其他条款，包括但不限于<a
+      href="https://chinabrant.github.io/xue_chinese/privacypolicy/cn/index.html"><u>隐私政策</u></a>。所有这些条款在此以引用的方式并入这些服务条款。
+  </p>
+  <p>
+    <strong>访问和使用服务</strong>
+  </p>
+  <p>
+    <strong>服务说明</strong>： Xue Chinese 服务旨在允许用户从移动应用程序和/或网站学习和练习中文。
+  </p>
+  <p>
+    <strong>您的注册义务：</strong>您可能需要向 Xue Chinese 注册才能访问和使用服务的某些功能。 如果您选择注册服务，则表示您同意按照服务注册表格的提示提供并维护有关您的真实，准确，最新和完整的信息。
+    注册数据和有关您的某些其他信息受我们的<a
+      href="https://chinabrant.github.io/xue_chinese/privacypolicy/cn/index.html"><u>隐私政策</u></a>的约束。
+    如果您未满18岁，无论是否注册，都只有在您的父母或监护人的同意下，您才能使用本服务。
+  </p>
+  <p>
+    <strong>会员帐户，密码和安全性：</strong>您有责任对您的密码和帐户（如果有）保密，并对在您的密码或帐户下发生的任何及所有活动负全部责任。
+  </p>
+  <ul>
+    <li>
+      您同意（a）任何未经授权使用您的密码或帐户或任何其他违反安全性的行为立即通知 Xue Chinese
+      ，并且（b）确保在每次访问服务的会话结束时退出和/或锁定账号，以及保护用于访问服务的设备的密码。对于您未遵守本节规定而引起的任何损失或损害， Xue Chinese 不承担任何责任。
+    </li>
+  </ul>
+  <p>
+    <strong>对服务的修改：</strong>&nbsp;Xue Chinese 保留在不通知的情况下临时或永久修改或终止服务（或其任何部分）的权利。您同意 Xue Chinese
+    对您或任何第三方对本服务的任何修改，暂停或终止不承担任何责任。
+  </p>
+  <p>
+    <strong>关于使用和存储的一般惯例：</strong>您承认 Xue Chinese 可能会建立有关使用服务的一般惯例和限制，包括但不限于服务将保留数据或其他内容的最长时间以及代表您在 Xue Chinese
+    服务器上分配的最大存储空间。您同意 Xue Chinese 对由于服务维护或传输导致的删除或未能存储的任何数据或其他内容概不负责。您承认， Xue Chinese 保留终止长时间不活动帐户的权利。您进一步确认， Xue
+    Chinese 保留随时自行决定在不通知的情况下更改这些一般惯例和限制的权利。
+  </p>
+  <p>
+    <strong>移动服务：</strong>服务包括可通过移动设备使用的某些服务，包括（a）从移动设备浏览服务和站点的能力，以及（b）通过在移动设备（统称为“移动服务”）上下载并安装在其应用程序访问某些功能的能力。在您通过移动设备访问服务的范围内，您的无线服务运营商的标准费用，数据费率和其他费用可能适用。此外，运营商可能会禁止或限制下载，安装或使用某些移动服务，并且并非所有移动服务都可以与所有运营商或设备一起使用。
+  </p>
+  <p>
+    <strong>使用条件</strong>
+  </p>
+  <p>
+    <strong>您对内容的权利和权利授予</strong>：您分享或上传的某些内容（例如评论）可能受知识产权法的保护。对于您在 Xue Chinese
+    中创建和分享的任何这类内容，知识产权归您所有，例如版权或商标权。本篇条款的任何规定都不会剥夺您对自己的内容拥有的权利。您可以按照自己的意愿在任何地方与其他任何人分享自己的内容。然而，为提供我们的服务，我们需要您授予使用这些内容的某些法律权限（称为“许可”）。
+    这些权限将仅用于提供和改善我们的产品和服务。具体而言，当您在我们的产品中或通过与我们的产品相关的方式分享、发布或上传受知识产权保护的内容时，您即向我们授予非独占、可转让、可分发次级许可、免版税的全球通用许可，允许我们根据您的隐私和应用设置托管、使用、分发、修改、运行、复制、公开执行、公开展示或翻译您的内容，以及创建这些内容的衍生作品。这意味着，举例而言，若您在
+    Xue Chinese 分享评论，则您向我们授予权限，允许我们根据您的设置存储、复制以及与其他方（例如为您所使用的 Xue Chinese 服务或其他 Xue Chinese
+    产品提供支持的服务提供商）分享这类评论。该许可将在您的内容从我们的系统中删除时终止。您可以逐个删除内容，删除内容后，内容将不再对其他用户可见。
+  </p>
+  <p>
+    <strong>用户行为</strong>：您对您上传，张贴，发布或显示（以下简称“贴文”）或邮件，其他通过“服务”传输的所有信息，数据，文本，软件，音乐，声音，照片，图形，视频，消息或其他材料（以下简称“内容”）负全责。以下是
+    Xue Chinese 非法或禁止的内容和/或使用类型的示例。对于任何人， Xue Chinese
+    有权自行决定对违反此规定的行为进行调查，并采取适当的法律行动，包括但不限于从服务中删除有问题的内容，中止或终止此类违规者的帐户并向法律执法部门举报。您同意不使用服务发布，通过电子邮件发送或以其他方式传输任何以下内容：
+  </p>
+  <ol>
+    <li>
+      &nbsp;是非法的，有害的，威胁，辱骂，骚扰，侵权，过度暴力，诽谤，粗俗，淫秽，性，色情，侵犯他人隐私，在种族，民族或其他方面的仇恨；
+    </li>
+    <li>
+      侵犯任何一方的任何知识产权或其他所有权；
+    </li>
+    <li>
+      构成未经请求或未经授权的广告，促销材料，商业活动和/或销售，“垃圾邮件”，“垃圾信息”，“连环信”，“传销”，“竞赛”，“赌博”或任何其他形式的诱惑；
+    </li>
+    <li>
+      包含旨在中断，破坏或限制任何计算机软件，硬件或电信设备功能的软件病毒或任何其他计算机代码，文件或程序；
+    </li>
+    <li>
+      根据 Xue Chinese 自身的判断，具有异议或限制或禁止任何其他人使用或享受该服务，或可能使 Xue Chinese 或其用户遭受任何形式的伤害或不利因素；
+    </li>
+    <li>
+      冒充任何人或实体，或虚假陈述或以其他方式歪曲您与该人或实体的隶属关系；
+    </li>
+    <li>
+      向18岁以下的任何人征求个人信息；
+    </li>
+    <li>
+      通过电子或其他方式从服务或网站中获取或收集其他用户的电子邮件地址或其他联系信息，用于发送不请自来的电子邮件或其他不请自来的通信；
+    </li>
+    <li>
+      广告/营销产品或服务，或个人主页、社会帐户或联系信息，或征集捐款/捐款和任何形式的征集，以及没有任何有用价值或违反我们社区准则的重复帖子；
+    </li>
+    <li>
+      &nbsp;干扰或破坏本服务或与本服务连接的服务器或网络，或不遵守与本服务连接的网络的任何要求，程序，政策或规定；
+    </li>
+    <li>
+      或违反任何适用的当地，州，国家或国际法律或任何具有法律效力的规定；
+    </li>
+    <li>
+      &nbsp;进一步或促进任何犯罪活动或企业，或提供有关非法活动的指导性信息；
+    </li>
+    <li>
+      或通过服务无意生效或提供的任何方式获取或试图访问或以其他方式获取任何材料或信息。
+    </li>
+  </ol>
+  <p>
+    <strong>账号信息验证：</strong>为了保证您的体验，和相关法律要求，我们可能会要求您通过验证电子邮件地址或手机号码来确认您的身份。我们不建议您开设多个帐户，尤其是当您登录我们的应用程序时，无法在两个或多个帐户之间合并或共享数据。
+    如果我们发现您先前已通过我们的任何应用程序进行了注册，并且您的原始或较旧的帐户因违反这些服务条款而被永久停用，则我们也保留拒绝你新账号永久使用的权利。
+  </p>
+  <p>
+    <strong>安全：</strong>为了维持安全的环境和促进言论自由，我们会移除会危害社群的帐户，包括危及其他帐户和我们服务安全性的帐户。我们使用人工系统，多方位屏蔽和移除屡次或严重违反我们社群守则的帐户。我们希望确保用户在
+    Xue Chinese 看到真实的内容。我们坚信，真实性有助于打造更好的学习环境。因此，我们不允许 Xue Chinese 用户掩盖自己的真实身份或行为。
+  </p>
+  <p>
+    在某些情形下，我们将先获取帐户的更多信息，再采取强制措施，程度从临时限制帐户使用到永久停用帐户不等。身份不实的帐户，包括：
+  </p>
+  <ol>
+    <li>
+      提供任何虚假的个人信息或未经允许为除您之外的任何人创建帐户。
+    </li>
+    <li>
+      使用不符合我们政策的姓名，ID，昵称，签名。
+    </li>
+    <li>
+      &nbsp;使用不符合我们政策的头像，包括但不限于公司徽标，政治人物或他人网红照片等。
+    </li>
+    <li>
+      一位用户同时保留多个帐户。
+    </li>
+    <li>
+      被盗帐户。
+    </li>
+    <li>
+      长时间未使用的空账户
+    </li>
+    <li>
+      &nbsp;使用多个 Xue Chinese 帐户。
+    </li>
+  </ol>
+  <p>
+    <strong>费用：</strong>您承认， Xue Chinese 保留对服务的任何部分收费的权利，并有权不时决定更改其费用（如有）。 您同意根据网站上规定的条款在到期时支付所有费用。
+  </p>
+  <p>
+    <strong>服务的支付：</strong>&nbsp;Xue Chinese 提供了某些增强功能的服务，您可以按照各种条款购买这些服务，包括但不限于三个月，一年，每月自动续订，每年自动续订和终身订阅（
+    “订阅”）。可以通过服务获得与订阅相关的功能的描述。在您下订单之前，将向您显示您通过服务购买的订购到期应付的应付款项。如果您选择通过服务购买订阅商品，则您同意（1）支付适用的费用和任何税金；
+    （2）如果您通过网站购买，或者如果您通过App购买， Xue Chinese 可能会从您的信用卡中收取用于验证，预授权和付款目的的费用，并通过App Store或发行平台（例如Apple App Store、Google
+    Play&nbsp;、微信、支付宝）向您的帐户收费，即提供该应用的平台（每个“应用提供商”）；
+    （3）承担您的应用程序提供商，银行或其他金融服务提供商可能向您征收的任何其他费用，以及可能适用于您的订单的任何税费。我们确认您的订单付款后，您会收到一封确认电子邮件。在 Xue Chinese 接受并确认之前，您的订单不绑定在
+    Xue Chinese 上。除非本条款中明确规定，否则所有付款均不可退款且不可转让。
+  </p>
+  <p>
+    <strong>订阅的续订和取消：</strong>所有款项都应付款并收费：（1）在您下订单时一次性购买（即终身订阅）；
+    （2）对于每月，每年或其他自动循环的订阅，每个此类订阅会自动续订与到期订阅期限相等的额外期限，直到您取消订阅为止。您必须在续订前取消您的每月或每年的订阅，以避免在下一个订阅期计费。如果您通过网站购买订阅，则可以随时通过电子邮件与我们联系sjwu1234@gmail.com;来取消订阅的续订。如果您通过应用程序提供商购买订阅，则可以通过应用程序提供商取消订阅的续订。您将无法获得当前订阅期已付费用的退款，并且您将继续收到订购的服务，直到当前订阅期结束为止。
+  </p>
+  <p>
+    如果您对收费有任何疑问或异议，您同意先向我们提出，或者同意不取消或拒绝任何信用卡或应用程序提供商的收费，除非您已做出合理的尝试直接通过 Xue Chinese 解决此问题。
+  </p>
+  <p>
+    Xue Chinese 保留在某些情况下不处理或取消您的订单的权利，例如，如果您的信用卡被拒，我们怀疑该请求或订单是欺诈性的，或者在其他情况下， Xue Chinese 自行认为适当的决定。
+  </p>
+  <p>
+    Xue Chinese 还保留自行决定采取步骤验证与您的订单有关的身份的权利。 对于我们不处理或取消的订单， Xue Chinese 不会向您收费或退还费用。
+  </p>
+  <p>
+    <strong>苹果支持的软件应用程序</strong>
+  </p>
+  <p>
+    Xue Chinese 提供的软件应用程序旨在与Apple Inc.（简称“Apple”）等公司在市场上出售的产品结合使用。
+    对于与Apple品牌产品（例如，软件，Apple支持的软件）相关的供您使用的软件，除本服务条款中规定的其他条款和条件外，以下条款和条件适用：
+  </p>
+  <ol>
+    <li>
+      Xue Chinese 和您承认本服务条款仅在 Xue Chinese 与您之间（而非与Apple之间达成），并且在 Xue Chinese 与Apple之间，由 Xue Chinese
+      而非Apple独自负责启用Apple的软件及其内容。
+    </li>
+    <li>
+      您不得以任何方式违反或违反App Store服务条款中为Apple支持软件制定的使用规则，或以其他方式与Apple Store服务条款相冲突。
+    </li>
+    <li>
+      根据App Store服务条款中规定的使用规则，您使用Apple支持软件的许可仅限于在您拥有或控制的iOS产品上使用Apple支持软件的不可转让的许可。
+    </li>
+    <li>
+      Apple没有任何义务提供与启用Apple的软件有关的任何维护或支持服务。
+    </li>
+    <li>
+      Apple对任何产品担保（无论是法律明示的还是默示的）不承担任何责任。如果Apple支持的软件未能遵守任何适用的保修条款，您可以通知Apple，Apple会向您退还Apple支持的软件的购买价格；并且在适用法律允许的最大范围内，Apple对于Apple支持的软件或因不遵守任何规定引起的任何其他索赔，损失，责任，损害，成本或费用，将不承担任何其他保证义务。这仅是
+      Xue Chinese 的责任，在适用法律无法否认的范围内。
+    </li>
+    <li>
+      &nbsp;Xue Chinese 和您承认， Xue Chinese
+      （而非Apple）有责任解决您或任何第三方与Apple支持的软件有关的任何索赔，或您对拥有和/或使用该Apple支持的软件的使用的索赔，包括但不限于：（a）产品责任索赔；
+      （b）任何声称Apple支持的软件不符合任何适用法律或法规要求的主张； （c）根据消费者保护或类似法规引起的索赔。
+    </li>
+    <li>
+      如果有任何第三方声称Apple支持的软件或终端用户拥有和使用该Apple支持的软件侵犯了第三方的知识产权，例如，在 Xue Chinese 和Apple之间，是 Xue Chinese
+      而非Apple全权负责调查，辩护，解决和解除任何此类知识产权侵权索赔。
+    </li>
+    <li>
+      如果您对Apple支持的软件有任何疑问，投诉或主张，请通过&nbsp;<a class="external-link"
+        href="mailto:sjwu1234@gmail.com">sjwu1234@gmail.com</a>&nbsp;&nbsp;将其直接发送到 Xue Chinese 。
+    </li>
+  </ol>
+  <p>
+    Xue Chinese
+    和您承认并同意Apple和Apple的子公司是这些服务条款中与Apple支持软件有关的第三方受益人，并且，在您接受这些服务条款和条件后，作为第三方受益人的Apple支持软件，Apple将有权（并且将被视为已接受权利）对您执行这些服务条款。
+  </p>
+  <p>
+    <strong>国际使用特别通知； 出口管制：</strong>与服务相关的软件（定义见下文）以及适用数据的传输（如有）受美国出口管制的约束。 不得从服务下载软件，也不得违反美国出口法律以其他方式导出或再导出软件。
+    您自行承担下载或使用本软件的风险。 认识到互联网的全球性，您同意遵守有关使用本服务的所有当地法规，包括与在线行为和可接受的内容有关的法律和法规。
+  </p>
+  <p>
+    <strong>商业用途：</strong>除非本协议或本服务另有明确授权，否则您同意不对以下内容进行展示，分发，许可，执行，发布，再创造，复写，复制，创建衍生作品，以商业目的对其进行修改，出售，转售，利用，转让或传输服务的任何部分，服务的使用或对服务的访问。
+    该服务仅供您个人使用，不得用于直接的商业活动。
+  </p>
+  <p>
+    <strong>知识产权</strong>
+  </p>
+  <p>
+    <strong>服务内容，软件和商标：</strong>您承认并同意，服务可能包含受版权，专利，商标，商业秘密或其他专有权利和法律保护的内容（“服务内容”）。除非得到 Xue Chinese
+    的明确授权，您同意基于全部或部分服务或服务内容，不修改，复制，构架，下载，出租，租赁，借出，出售，分发或创建衍生作品，上述规定不适用于您合法上传到服务的您自己的用户内容（定义如下）。在使用服务时，您不得从事或使用任何数据挖掘，机器人，抓取或类似的数据收集或提取方法。除此处明确授权外，严禁使用本网站或服务内容。服务基础下或与服务相关的分发的技术和软件均属
+    Xue Chinese ，我们关联的机构和合作伙伴（“软件”）的财产。您同意不对软件进行任何复制，修改，创建衍生作品，进行反向工程，反向汇编或以其他方式尝试发现任何源代码，出售，转让，再许可或以其他方式转让任何权利。 Xue
+    Chinese 保留此处未明确授予的任何权利。
+  </p>
+  <p>
+    Xue Chinese 名称和徽标是 Xue Chinese 的商标和服务标记（统称为“ Xue Chinese 商标”）。
+    通过服务使用和显示的其他公司，产品以及服务名称和徽标可能是其各自所有者的商标或服务标记，这些所有者可能会或可能不会被认可或隶属于 Xue Chinese 。
+    未经我们事先书面许可，本服务条款或服务中的任何内容均不得解释为以暗示，禁止反言或其他方式授予使用该服务上显示的任何 Xue Chinese 商标的任何许可或权利。 使用 Xue Chinese
+    商标产生的所有商誉将确保我们的专有利益。
+  </p>
+  <p>
+    <strong>第三方材料：</strong>在任何情况下， Xue Chinese
+    对第三方或在用户的指导下发布的任何内容均不承担任何责任，包括但不限于任何内容的任何错误或遗漏，或通过服务发布的内容造成的任何损失或损坏，通过服务发送的电子邮件或以其他方式传输的任何内容而引起的任何形式的损失。您承认， Xue
+    Chinese 不会预先筛选内容，但是 Xue Chinese 及其指定人员应有权（但没有义务）自行决定拒绝或删除可通过服务获得的任何内容。在不限制上述规定的前提下， Xue Chinese
+    及其指定人员应有权删除任何违反本服务条款或由 Xue Chinese 自行决定认为具有其他异议性的内容。您同意必须评估并承担与使用任何内容相关的所有风险，包括对此类内容的准确性，完整性或有用性。
+  </p>
+  <p>
+    <strong>在服务上或通过服务发布的用户内容：</strong>您对在服务或网站上或通过服务或网站发布的内容和其他材料，传输或分享给其他用户或接收者的内容（统称“用户内容”）负全部责任。您将不会发布任何您未创建的内容，或您不拥有所有权，标题和权益，包括但不限于其中包含的所有版权和宣传权的内容。通过发布任何用户内容，您特此授予并同意授予
+    Xue Chinese
+    及其关联公司非排他性，全球性，免版税，已缴足，可转让，可再许可，永久，不可撤销的许可的复制，显示，传输，执行，分发，存储，修改并以任何形式，包括媒介或目前已知或以后开发的技术将您的用户内容与服务进行运营或促销，广告或营销结合使用。
+  </p>
+  <p>
+    您承认并同意，您向 Xue Chinese 提供的有关本网站或服务的任何问题，评论，建议，想法，反馈或其他信息（以下简称“提交内容”）均为非机密信息， Xue Chinese
+    有权无限制地使用和出于任何目的，商业目的或其他目的散播这些提交的内容，而无需您的确认或补偿。
+  </p>
+  <p>
+    您承认并同意， Xue Chinese 可以保留或披露内容，在如下法律要求的情况下或由于充足的理由认为保留或披露内容是必需的：（a）遵守法律程序，适用法律或政府要求 ; （b）执行本服务条款；
+    （c）回应有关任何内容侵犯第三方权利的主张； （d）保护 Xue Chinese 及其用户和公众的权利，财产或人身安全。 您了解，服务的技术处理和传输，包括您的内容，可能涉及（a）通过各种网络进行的传输；
+    （b）进行更改以符合并适应连接网络或设备的技术要求。
+  </p>
+  <p>
+    <strong>第三方网站</strong>
+  </p>
+  <p>
+    服务可能会或第三方可能会提供对Internet上其他站点和资源的链接或其他访问。 Xue Chinese 无法控制此类站点和资源，并且 Xue Chinese 对此类站点和资源概不负责，也不认可。 您进一步确认并同意， Xue
+    Chinese 对因使用或依赖于或依赖于任何第三方网站或服务上可用的任何内容，事件，商品或服务而引起的或据称由使用或依赖的任何内容所造成的损害或损失，概不负责。 您在使用服务时与第三方进行的任何交易均在您与第三方之间，并且您同意
+    Xue Chinese 对您可能对任何此类第三方造成的任何损失或索赔不承担任何责任。
+  </p>
+  <p>
+    <strong>第三方服务</strong>
+  </p>
+  <p>
+    您可以使各种在线服务直接集成到您的 Xue Chinese 体验中。通过将这些服务直接集成到服务中，我们使您的在线体验更加丰富和个性化。为了利用这些功能，我们可能会要求您在这类提供商的网站进行注册或登录。通过在 Xue
+    Chinese 服务中启用第三方服务，您允许我们将您的登录信息传递给这些服务提供商。有关激活这些第三方服务的含义以及 Xue Chinese 使用，存储和披露与您有关的信息以及您在 Xue Chinese
+    中使用此类服务（包括您的朋友列表等）的更多信息，请参阅我们的<a
+      href="https://chinabrant.github.io/xue_chinese/privacypolicy/cn/index.html"><u>隐私政策</u></a>。但是，请记住，第三方服务使用，存储和披露您的信息的方式仅受第三方政策的约束，
+    Xue Chinese 对任何第三方站点或您的 Xue Chinese 服务中可能启用的服务的隐私惯例或其他行为概不负责。
+  </p>
+  <p>
+    此外， Xue Chinese 对与第三方服务相关的任何信息，内容，商品，数据，意见，建议或声明的准确性，可用性或可靠性概不负责。 因此， Xue Chinese
+    对因使用或依赖任何此类第三方服务或与之相关的任何使用而造成的或据称造成的任何损害或损失不承担任何责任。 Xue Chinese 仅出于方便的目的启用这些功能，并且包含这些功能并不表示赞同或推荐。
+  </p>
+  <p>
+    <strong>赔偿和免除</strong>
+  </p>
+  <p>
+    您同意免除，释放 Xue Chinese
+    及其关联公司及其高管，员工，董事和代理人因您使用本服务，任何用户内容，与服务的连接，您对本服务条款的违反或对他人权利的侵犯带来的受任何及所有损失，损害，费用，包括合理的律师费，权利，索赔，任何形式的行为和伤害（包括死亡）的赔偿。
+  </p>
+  <p>
+    <strong>免责声明</strong>
+  </p>
+  <p>
+    您自行承担使用该服务的风险。 该服务以“原样”和“可用”为基础提供。 Xue Chinese 明确拒绝对任何形式的明示，暗示或法定担保，包括但不限于对适销性，特定目的适用性，标题和非侵权性的暗示担保。 Xue Chinese
+    不做任何保证（a）服务将满足您的要求，（b）服务将不受干扰，及时，安全或无差错，（c）使用该服务可能获得的结果准确或可靠，或（d）您通过服务购买或获得的任何产品，服务，信息或其他材料的质量都将满足您的期望。
+  </p>
+  <p>
+    <strong>责任范围</strong>
+  </p>
+  <p>
+    您明确理解并同意 Xue Chinese 对任何间接，偶发，特殊，继发性，示范性损害或利润损失不承担任何责任，包括但不限于商誉，使用，数据或其他无形的损失（即使已告知 Xue Chinese
+    此类损害的可能性），无论是基于合同，侵权，疏忽，严格责任还是其他原因，都是由于以下原因造成的：（a）使用或无法使用该服务;
+    （b）由于购买或获得的任何货物、数据、信息或服务，或通过或从该服务收到的信息或交易而产生的替代货物和服务的采购成本； （c）未经授权访问或更改您的传输或数据；
+    （d）任何第三方关于服务的声明或行为；或（e）与服务有关的任何其他事项。在任何情况下， Xue Chinese 对您的所有损害、损失或诉因的全部责任不得超过您在过去六（6）个月内支付给 Xue Chinese
+    的金额，或者，如果超过该金额，则为100美元（$100）。
+  </p>
+  <p>
+    某些司法管辖区不允许排除某些担保，也不能限制或排除偶发性或继发性损害赔偿责任。 因此，上述的某些限制可能对您不适用。 如果您对本服务的任何部分或本服务条款感到不满意，您唯一的补救措施是停止使用本服务。
+  </p>
+  <p>
+    <strong>终止</strong>
+  </p>
+  <p>
+    您同意， Xue Chinese 可以出于任何原因自行决定暂停或终止您的帐户（或其任何部分）或使用服务，并删除和丢弃服务中的任何内容，包括但不限于缺少使用，或 Xue Chinese
+    认为您违反或违反了本服务条款的文字或精神。任何涉嫌欺诈、滥用职权或非法活动可能成为终止您服务的理由，可提交给相应的执法机构。 Xue Chinese
+    也可以自行决定在任何时间终止提供服务或其任何部分，恕不另行通知。您同意根据本服务条款的任何规定终止对服务的访问，恕不另行通知，并承认和同意 Xue Chinese
+    可以立即停用或删除您的帐户以及帐户中所有相关信息和文件和/或禁止进一步访问此类文件或服务。此外，您同意 Xue Chinese 对您或任何第三方对您对服务的访问的任何终止概不负责。
+  </p>
+  <p>
+    <strong>用户纠纷</strong>
+  </p>
+  <p>
+    您同意对与该服务相关的任何其他用户的互动承担全部责任， Xue Chinese 对此概不负责。 Xue Chinese 保留以任何方式介入您与本服务任何其他用户之间的纠纷的权利，但没有义务。
+  </p>
+  <p>
+    <strong>其他</strong>
+  </p>
+  <p>
+    本服务条款构成您与 Xue Chinese 之间的完整协议，并管理您对服务的使用，并接替您与 Xue Chinese
+    之间就该服务达成的任何先前协议。当您使用附属公司或第三方服务，第三方内容或第三方软件时，您还可能受其他适用条款的约束。本服务条款应受中华人民共和国法律法规和相应的国际条约保护，并且排除一切冲突法规定的适用。 Xue Chinese
+    未能行使或执行本服务条款的任何权利或规定，并不构成对该权利或规定的放弃。如果有管辖权的法院发现本服务条款中的任何规定无效，则当事各方同意法院应努力实现该条款以及本条款其他规定中反映的当事方的意图，且且本服务条款的其他条款仍然完全有效。您同意，无论有何相反的法规或法律，因使用本服务或本服务条款而引起或与之相关的任何索赔或诉讼因由必须在该索赔或诉讼因由产生后一（1）年内提出，否则将永远被禁止。基于本协议或与本协议相关的司法或行政程序，本协议的印刷版本和任何以电子形式发出的通知均应被接受，其使用范围和条件应与最初产生并维护的其他业务文档和记录相同，并受相同条件的约束。未经
+    Xue Chinese 事先书面许可，您不得转让本服务条款，但 Xue Chinese
+    可以无限制地全部或部分分派或转让本服务条款。本服务条款中的章节标题仅是为了方便起见，没有法律或合同效力。可以通过电子邮件或普通邮件通知您。该服务还可以通过在服务上显示通知或指向通知的链接来向您提供对这些服务条款或其他事项的更改的通知。
+  </p>
+  <p>
+    <strong>您的隐私</strong>
+  </p>
+  <p>
+    在 Xue Chinese ，我们尊重用户的隐私。 有关详细信息，请参阅我们的<a
+      href="https://chinabrant.github.io/xue_chinese/privacypolicy/cn/index.html"><u>隐私政策</u></a>。
+    使用该服务，即表示您同意我们按照此处所述收集和使用个人数据。
+  </p>
+  <p>
+    <br>
+  </p>
+
+
+
+  <bookmark-sidebar-rswa8sfthri id="redeviation-bs-sidebar" class="notranslate" aria-hidden="true" data-theme="default"
+    data-pos="left"><template shadowrootmode="closed"><iframe
+        style="margin:0;padding: 0;border: none;width: 100%;height: 100%;"></iframe></template></bookmark-sidebar-rswa8sfthri>
+  <div id="redeviation-bs-indicator" data-theme="default" data-pos="left" class="redeviation-bs-visible"
+    style="height: 21%; top: 26.7%;">
+    <div><span></span></div>
+  </div>
+</body>
+
+</html>
