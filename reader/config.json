@@ -1,0 +1,14 @@
+{
+	"sites": [
+		{
+			"name": "xxx",
+			"url": "http://xxx.com",
+			"desc": "xxx", 
+			"formats": "epub,txt",	
+			"mobile_download": true, 
+			"star": 5, 
+			"lang": "中文",
+			"sort": 1
+		}
+	]
+}
